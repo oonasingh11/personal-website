@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Newsletter archive for Oona Singh — writing about how money moves through engineered systems.">
+  <link rel="canonical" href="https://oonasingh.com/newsletter/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Newsletter — Oona Singh">
+  <meta property="og:description" content="Newsletter archive for Oona Singh — writing about how money moves through engineered systems.">
+  <meta property="og:url" content="https://oonasingh.com/newsletter/">
+  <title>Newsletter — Oona Singh</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <header class="site-header">
+      <a class="site-title" href="/">Oona Singh</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/newsletter/">Newsletter</a>
+        <a href="https://oona.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <h1>Newsletter archive</h1>
+        <p>Dispatches on the infrastructure that moves money, the institutions behind it, and the people building what’s next.</p>
+      </section>
+      <section class="archive">
+        <h2>Issues</h2>
+        <div class="archive-list" data-archive>
+          <p class="muted">First issue coming soon.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script type="module">
+    import { renderPostList } from './posts.js';
+
+    const archiveContainer = document.querySelector('[data-archive]');
+    renderPostList(archiveContainer, {
+      basePath: './issues/',
+      fallbackText: 'First issue coming soon.'
+    });
+  </script>
+</body>
+</html>

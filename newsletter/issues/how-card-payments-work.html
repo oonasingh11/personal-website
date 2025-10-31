@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How Card Payments Work — Oona Singh</title>
+  <meta name="description" content="A guided tour through the actors, rails, and risk checks that let every card swipe go through.">
+  <link rel="canonical" href="https://oonasingh.com/newsletter/issues/how-card-payments-work.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How Card Payments Work — Oona Singh">
+  <meta property="og:description" content="A guided tour through the actors, rails, and risk checks that let every card swipe go through.">
+  <meta property="og:url" content="https://oonasingh.com/newsletter/issues/how-card-payments-work.html">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <header class="site-header">
+      <a class="site-title" href="/">Oona Singh</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/newsletter/">Newsletter</a>
+        <a href="https://oona.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </header>
+    <main>
+      <article class="newsletter-article">
+        <p class="meta"><a href="../">Newsletter archive</a> · <time datetime="2025-10-31">October 31, 2025</time></p>
+        <h1>How Card Payments Work</h1>
+        <p class="dek">A swipe looks simple. Under the hood it is dense choreography across banks, networks, cryptography, and code.</p>
+        <div class="newsletter-body">
+          <h2>Welcome and Context</h2>
+          <p>Hello all. Welcome and welcome back.</p>
+          <p>First of all, to my longtime readers, thank you for your continued readership and support. After some consideration, I’ve decided to pivot my content to focus almost exclusively on my area of interest these days, which is how money moves through engineered systems, or what I call money as infrastructure.</p>
+          <p>So, let’s get into the weeds of money as infrastructure. The most fitting place to start, and where a lot of basic payment understanding begins, is the anatomy of a payment, specifically, a card payment.</p>
+
+          <h2>What Happens in a Payment?</h2>
+          <p>Payments come in many flavors, and there isn’t just one way to move money. Over time, I’ll cover a wide range of models, but we’ll start with the most common transaction across digital rails: the card payment.</p>
+          <p>Broadly, card payments can be split into two types. Card Present (CP) occurs when the physical card, or a device such as your phone or watch, is tapped, dipped, or swiped at a terminal. Card Not Present (CNP) occurs when you pay online or in-app without the card being physically present.</p>
+          <p>To illustrate this, consider a simple case: a customer buys a $10 coffee in a store (get a load of these prices, huh). They swipe, and presto changeo, the vendor gets paid. On the surface, it looks trivial. Underneath, it is a carefully choreographed exchange of cryptography, risk checks, and structured messages flying across networks in well under a second.</p>
+
+          <h2>The Payment Process</h2>
+          <p>Before we proceed, a few abbreviations will keep us oriented. Customer (C) is the cardholder who pays. Card Issuer (CI) is the customer’s bank that issued the card. Merchant (M) refers to the business that accepts the payment. Acquirer (A) is the merchant’s bank or processor. A network (N) is the card network, such as Visa, Mastercard, and others, that routes messages and enforces rules.</p>
+          <p>In its simplest form, the chain looks like this:</p>
+          <p>Customer → Merchant → Acquirer → Network → Issuer → back again.</p>
+          <p>Textually, the customer uses their bank-issued card with the merchant. The merchant’s acquirer sends the transaction through the network, which routes it to the issuer for authorization. The issuer replies with an approval or decline, and that answer propagates back to the point of sale.</p>
+
+          <h3>Where do PSPs like Stripe fit in?</h3>
+          <p>You might be wondering where the developer-friendly APIs, such as Stripe, Adyen, and Checkout.com, sit in this context. These companies are Payment Service Providers (PSPs). They abstract the old payment rails and present clean APIs, so that a merchant does not have to implement raw card network protocols, manage tokenization and vaulting, or handle PCI scope on their own. PSPs offer onboarding and KYC flows, risk tooling, tokenization and wallets, reporting, reconciliation aides, and payouts. They often also have acquiring capabilities (a fancy way to say they directly connect to the networks).</p>
+          <p>A quick but essential clarification about Merchant of Record: in a Payment Facilitator, PayFac model, such as Square, which serves many small merchants, the platform itself is the Merchant of Record and onboards individual businesses as sub-merchants under its umbrella. In other products and regions, companies like Stripe and Adyen operate as acquirers or processors, while the business itself remains the Merchant of Record with its own merchant ID. So, sometimes the PSP is effectively the MoR for sub-merchants, while at other times it serves as a gateway or acquirer, with the merchant remaining the MoR. It depends on the product and jurisdiction.</p>
+
+          <h2>So how do the participants make money?</h2>
+          <p>Fantastic question. If you are unfamiliar with the term bps, coolly pronounced bips, this is a perfect place to learn it. One basis point is one hundredth of a percent: 1 bps = 0.01%. In card payments, everyone gets a few basis points, and that global fee waterfall is what funds the rails.</p>
+          <p>Using the $10 coffee as an example:</p>
+          <ul>
+            <li>The issuer, the cardholder’s bank, earns interchange, typically around 130 to 180 bps (1.3% to 1.8%) for credit transactions and 20 to 80 bps for debit, because the issuer fronts the credit line, takes fraud risk, and often funds rewards.</li>
+            <li>The network, such as Visa or Mastercard, charges an assessment fee of around 10 to 15 bps for operating the rails.</li>
+            <li>The acquirer or processor earns around 20 to 30 bps plus a small fixed fee for connecting the merchant, handling clearing and settlement, and being within the PCI scope.</li>
+            <li>The PSP, or PayFac, adds its markup, often 40 to 100 bps plus a fixed fee, which is typically 30 cents, because it provides the APIs, tokenization, fraud tooling, dashboards, and operational lift that make card acceptance feasible for thousands of businesses.</li>
+            <li>The total cost to the merchant, known as the Merchant Discount Rate, typically ranges from 2% to 3% for credit and under 1% for debit, although actual pricing varies by country, card type, merchant category, volume, and deal terms.</li>
+          </ul>
+          <p>Put simply, you pay $10, and the café typically sees around $9.70 to $9.80 after fees. Daylight robbery, I know! The rest of that cash funds the infrastructure that actually moved your money.</p>
+
+          <h2>Edge cases you will actually hit</h2>
+          <p>The in-person card-present flow is the happy path. But real life includes variations that every merchant eventually encounters. Let’s run through a few.</p>
+
+          <h3>Card Not Present (CNP)</h3>
+          <p>CNP is the e-commerce or in-app world. There is no physical chip read; instead, the merchant collects the PAN (long card number), expiry date, CVC, billing address, and device or browser signals. Security here relies on EMV 3-D Secure, also known as 3DS, which can provide frictionless, risk-based approval with no challenge, or step-up, OTP, or app approval. Fraud risk is structurally higher online, which is why pricing is often higher; additionally, with 3DS liability, it can shift away from the merchant for many transactions.</p>
+
+          <h3>Apple Pay and Other Wallets</h3>
+          <p>Present but not present, Apple Pay deserves its own section. The wallet provides a DPAN, a device-specific token that substitutes for the real PAN, along with a payment cryptogram generated by the device’s secure element for that transaction. The real PAN never leaves the phone. These typically price like card-present transactions, with a better fraud profile, because tokenization reduces the payoff for stealing the primary account number. Interestingly, the invention of Apple Pay’s network tokenization required a substantive reinvention of how card payments worked under the hood. The technology was innovative and novel at the time, though we take it for granted now.</p>
+
+          <h3>Adding Tips and Adjustments</h3>
+          <p>There are often adjustments and incremental authorizations in verticals like hospitality and fuel. Restaurants usually do an initial approval and then adjust or capture the final amount once a tip is added. Hotels and car rentals run incremental authorizations for incidentals during the stay and complete the transaction at checkout. Fuel stations perform a pre-authorization for a fixed amount when you insert your card, and later complete the transaction for the pump total. The engineering ‘gotcha’ here is to make captures idempotent and to link every adjustment back to the original authorization via identifiers like the STAN and RRN so that you can reconcile cleanly.</p>
+
+          <h3>Failures and Payment Fallbacks</h3>
+          <p>Networks and banks are not always perfectly accessible in real-time. If the outcome is unknown because a response never came back, the merchant should send a reversal to clear any ghost hold on the cardholder account. Networks and issuers sometimes provide stand-in approvals with limited checks during outages to maintain commerce. If a chip or contactless flow fails, a magstripe fallback, swipe, can be used; however, it carries a higher fraud risk and may incur different fees.</p>
+
+          <h2>The Engineering Deep-Dive</h2>
+          <p>If you are an engineer, this is where it gets fun. If you are just curious about what is happening under the hood, it is equally fascinating.</p>
+          <p>Let’s recap the actors in the system:</p>
+          <ol>
+            <li>The cardholder uses an EMV chip, contactless NFC, or a tokenized wallet, such as Apple Pay.</li>
+            <li>The merchant includes the point-of-sale terminal and backend system, or a website and gateway SDK in e-commerce.</li>
+            <li>The PSP, or PayFac, exposes the API that the merchant calls and either acts as an acquirer or routes to one.</li>
+            <li>The acquirer or processor communicates with the card networks using ISO 8583 and settles funds with the merchant.</li>
+            <li>The network routes and enforces rules.</li>
+            <li>The issuer, the cardholder’s bank, makes authorization decisions and ledger postings.</li>
+            <li>All of this is held together by HSMs, tamper-resistant hardware that stores keys and performs cryptographic operations, such as PIN encryption and EMV cryptogram verification.</li>
+          </ol>
+
+          <h3>Inside the Authorization Path</h3>
+          <p>At the payment terminal, the EMV flow begins by selecting the AID (Application Identifier), reading card data, and generating an unpredictable number, known as the UN. The card computes an ARQC, a per-transaction cryptogram created with keys seeded from the issuer.</p>
+          <p>If a PIN is required, it never traverses the network in the clear; instead, it is encrypted using DUKPT (Derived Unique Key Per Transaction), so that each PIN entry uses a different key.</p>
+          <p>In Apple Pay or Google Pay, the device sends a DPAN token and a cryptogram generated by the secure element; the actual PAN is hidden in a network token vault.</p>
+          <p>The terminal forwards a bundle of fields—PAN or DPAN, amount and currency, terminal capabilities, the EMV tag set (Data Element 55), an optional PIN block, and timestamps—to the merchant backend.</p>
+          <p>From the terminal to the merchant backend, transport runs over TLS or TCP. The message may be vendor-specific JSON or already in ISO 8583 format. The backend enriches it with order ID, merchant identifiers, and location, then calls the PSP.</p>
+          <p>The PSP validates the schema, performs basic risk checks (including velocity limits and historical fraud signals), and device fingerprinting for CNP. It then decides how to route, choosing an acquirer and network path based on configuration, cost, and performance.</p>
+          <p>From PSP to acquirer or processor, the message is transformed into a formal ISO 8583 authorization request, MTI 0100, or the network’s native wire format. ISO 8583 is a compact, binary, packed bits protocol that has held this ecosystem together since the 1980s.</p>
+          <p>An authorization request can include:</p>
+          <ul>
+            <li>DE2, PAN or DPAN</li>
+            <li>DE3, processing code</li>
+            <li>DE4, amount in minor units</li>
+            <li>DE11, STAN, System Trace Audit Number</li>
+            <li>DE14, expiry</li>
+            <li>DE22, POS entry mode</li>
+            <li>DE23, PAN sequence, for EMV</li>
+            <li>DE35 or DE45, track data, if the transaction is magstripe</li>
+            <li>DE52, encrypted PIN block</li>
+            <li>DE55, EMV data, with ARQC</li>
+            <li>DE123 or DE127, private fields carrying 3DS or wallet risk signals</li>
+          </ul>
+          <p>The acquirer’s HSM decrypts the PIN block if required, and the EMV data is forwarded intact so the issuer can verify it.</p>
+          <p>The acquirer routes the message to the network, adding identifiers, merchant category code, and interchange markers. The network performs checks and forwards the transaction to the issuer determined by the BIN, which is the first 6 to 8 digits of the card.</p>
+          <p>At the issuer, the authorization engine checks the card’s status, available balance or credit limit, and runs fraud scoring based on merchant type, geography, and velocity. It validates CVV and the EMV cryptogram.</p>
+          <p>If the transaction is CNP and the merchant invoked 3-D Secure, the issuer’s Access Control Server may provide frictionless approval or step-up verification. The issuer then approves or declines, generates an authorization code, and sets result codes—for example, DE39, AVS, or CVV result.</p>
+          <p>The response travels back through the network, to the acquirer, to the PSP, and finally to the merchant’s POS. The terminal displays “Approved” or “Declined” and prints a receipt with the authorization code, the last four digits, and the timestamp.</p>
+
+          <h3>Two edge conditions</h3>
+          <p>Two edge conditions matter most operationally.</p>
+          <ol>
+            <li><strong>Timeouts.</strong> If the merchant times out and is unsure whether the issuer has approved, it should send a reversal, MTI 0400, to clear any potential hold.</li>
+            <li><strong>Speed.</strong> Because speed is a key part of the user experience, most stacks target sub-second decision-making, with an end-to-end latency of under 800 ms. PSPs and acquirers maintain warm connections and use efficient binary parsers for ISO 8583 to minimize latency.</li>
+          </ol>
+          <p>That is the real-time path of a transaction.</p>
+
+          <h2>When does the money actually move?</h2>
+          <p>Those authorization steps occur in seconds, but the actual transfer of money happens later, through clearing and settlement.</p>
+          <p>After authorization, the merchant, or PSP, captures the transaction. For retail, this is usually immediate. For hotels or restaurants, the payment may be delayed until the final amount is confirmed.</p>
+          <p>Captured transactions are aggregated into clearing files, often in fixed-width or tag-value formats, which contain data for fees and postings. These transactions flow on a scheduled cycle from the merchant or PSP to the acquirer to the network, sometimes multiple times a day.</p>
+          <p>Networks compute interchange and assessments, net positions across acquirers and issuers, and initiate funds transfer. Actual money movement typically occurs on T+1 or T+2.</p>
+          <p>The acquirer then pays the merchant on the agreed cadence, daily or weekly, net of fees. On the merchant side, a reconciliation job matches authorizations, captures, clearing records, and deposits, and investigates any discrepancies, late presentments, or disputes.</p>
+          <p>The time it takes for a merchant to be settled is known as the settlement delay, which in some regions can extend to 30 days.</p>
+
+          <h2>What is the language of these payments?</h2>
+          <p>When I reached this point in my own research, my next question was simple: What programming language is this written in? More specifically, which languages and frameworks have been around since the early days of card payments, and which are still used now?</p>
+          <p>The answer is quite dissatisfying as it’s scattered across various languages and frameworks for different aspects of the card payment stack.</p>
+          <ul>
+            <li>Terminals and secure elements: C or C++</li>
+            <li>Android POS apps: Java or Kotlin</li>
+            <li>iOS wallets: Swift or Objective-C, cryptography handled by the OS secure element</li>
+            <li>Merchant web checkouts: JavaScript or TypeScript</li>
+            <li>Mobile apps: Swift or Kotlin</li>
+            <li>Merchant backends: Go, Java, C#, or Node.js</li>
+            <li>PSPs and gateways: Java or Go on the hot path, C# and Node.js in some shops, Python for model training and offline jobs</li>
+            <li>Data and infra: Postgres or MySQL, Redis for hot keys, Kafka or NATS or RabbitMQ for streams, ClickHouse or BigQuery or Snowflake for analytics</li>
+            <li>Acquirers and processors: historically C or C++ or Java, many modern switches are Java or Go</li>
+            <li>Networks: heavy Java or C++ estates with mainframe COBOL or PL/I still important for some clearing workloads</li>
+            <li>Issuers: Java, C++, and sometimes Go, with extremely hot in-memory caches</li>
+            <li>Core ledgers: COBOL on mainframes in legacy cores, Java or C# in newer cores</li>
+            <li>Fraud platforms: real-time scoring in Java or Go, analytics in Python</li>
+            <li>Cryptography everywhere: HSMs integrated via PKCS#11 or vendor SDKs from C, Java, or C#</li>
+          </ul>
+
+          <h2>Closing Thoughts</h2>
+          <p>Anyway, that’s all for today. Hopefully, this made the complex workings behind every card swipe a little clearer.</p>
+          <p>There are not many resources that combine engineering, economics, and operations of payments in one place, so I wanted to write the one I wished I had. If you want to delve deeper, the sources I found helpful were <em>Field Guide to Global Payments</em> by Sophia Goldberg, <em>The Anatomy of a Swipe: Making Money Move</em> by Ahmed Siddiqui, and <em>Payment Card Domain Knowledge</em> by Ajay Kumar.</p>
+          <p>Next time, we will examine how banks actually store money and how ledger systems operate.</p>
+          <p>Until then, thanks for reading. Bye.</p>
+        </div>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

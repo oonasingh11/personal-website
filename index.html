@@ -2,59 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Oona Singh writes about how money moves through engineered systems — how it’s built, how it works, and who gets paid.">
-    <link rel="canonical" href="https://oonasingh.com/">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Oona Singh">
-    <meta property="og:description" content="Oona Singh writes about how money moves through engineered systems — how it’s built, how it works, and who gets paid.">
-    <meta property="og:url" content="https://oonasingh.com/">
-
+  <link rel="canonical" href="https://oonasingh.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Oona Singh">
+  <meta property="og:description" content="Oona Singh writes about how money moves through engineered systems — how it’s built, how it works, and who gets paid.">
+  <meta property="og:url" content="https://oonasingh.com/">
   <title>Oona Singh</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      line-height: 1.6;
-      background-color: #fafafa;
-      color: #111;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      margin: 0;
-    }
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .container {
-      max-width: 480px;
-      padding: 1rem;
-    }
-  </style>
-      <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Person",
-          "name": "Oona Singh",
-          "url": "https://oonasingh.com/",
-          "description": "Writer explaining how money moves through engineered systems.",
-          "sameAs": [
-            "https://oona.substack.com",
-            "https://x.com/oona_singh_"
-          ]
-        }
-        </script>
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Oona Singh",
+    "url": "https://oonasingh.com/",
+    "description": "Writer explaining how money moves through engineered systems.",
+    "sameAs": [
+      "https://oona.substack.com",
+      "https://x.com/oona_singh_"
+    ]
+  }
+  </script>
 </head>
 <body>
-  <div class="container">
-    <h1>Oona Singh</h1>
-    <p>I write about how money moves through engineered systems; how it’s built, how it works, and who gets paid.</p>
-    <p><a href="https://oona.substack.com">→ Read the newsletter</a></p>
+  <div class="wrapper">
+    <header class="site-header">
+      <a class="site-title" href="/">Oona Singh</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/newsletter/">Newsletter</a>
+        <a href="https://oona.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </header>
+    <main>
+      <section class="lede">
+        <h1>Systems, money, and who gets paid</h1>
+        <p>I write about how money moves through engineered systems; how it’s built, how it works, and who gets paid.</p>
+        <p class="muted">Prefer email? <a href="https://oona.substack.com" target="_blank" rel="noopener">Subscribe on Substack</a>.</p>
+      </section>
+      <section class="latest">
+        <h2>Latest writing</h2>
+        <div class="latest-list" data-latest>
+          <p class="muted">First issue coming soon.</p>
+        </div>
+        <p><a class="archive-link" data-archive-link href="/newsletter/">View all issues →</a></p>
+      </section>
+    </main>
   </div>
+  <script type="module">
+    import { renderPostList } from './newsletter/posts.js';
+
+    const latestContainer = document.querySelector('[data-latest]');
+    renderPostList(latestContainer, {
+      limit: 3,
+      basePath: 'newsletter/issues/',
+      fallbackText: 'First issue coming soon.'
+    });
+  </script>
 </body>
 </html>
