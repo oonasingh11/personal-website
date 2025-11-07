@@ -6,6 +6,12 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 
 export const posts = [
   {
+    slug: 'machine-to-machine-payments',
+    title: "Machine Money: Cloudflare's NET Dollar",
+    date: '2025-11-07',
+    summary: 'Cloudflare revives HTTP 402 with NET Dollar so autonomous agents can pay for APIs, data, and compute.'
+  },
+  {
     slug: 'how-card-payments-work',
     title: 'How Card Payments Work',
     date: '2025-10-31',
