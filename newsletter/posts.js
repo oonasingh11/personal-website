@@ -48,46 +48,10 @@ export const posts = [
     summary: "trying to make these newsletters read less like Greek + the em dash controversy."
   },
   {
-    slug: "how-do-computers-really-work",
-    title: "How do computers really work? Compilers? Interpreters?",
-    date: "2025-01-23",
-    summary: "are computers just magic."
-  },
-  {
     slug: "scheming-models-and-math",
     title: "Scheming Models and Math.",
     date: "2025-01-02",
     summary: "(not the kind you think) Just some thoughts on developments in AI by a software engineer - distilled to be less technical."
-  },
-  {
-    slug: "drone-simulator-update",
-    title: "Drone Simulator Update: The Flying Red Cube Takes Off!",
-    date: "2024-12-17",
-    summary: "I'm just a drone! I only fly away (hopefully)."
-  },
-  {
-    slug: "ai-capex",
-    title: "AI CapEx",
-    date: "2024-11-28",
-    summary: "in short - are we spending too much money on AI?"
-  },
-  {
-    slug: "oons-drone-3",
-    title: "Oons Drone 3",
-    date: "2024-10-25",
-    summary: "a short update."
-  },
-  {
-    slug: "oons-drone-2",
-    title: "Oons Drone 2",
-    date: "2024-09-12",
-    summary: "continuation of my drone simulator/game series."
-  },
-  {
-    slug: "oons-drone",
-    title: "Oons Drone",
-    date: "2024-08-09",
-    summary: "I am actually building a video game!"
   },
   {
     slug: "the-age-of-ai-anxiety",
