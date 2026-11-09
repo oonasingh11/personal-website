@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Why Sending Money Is Harder Than Sending a Text — Oona Singh</title>
+  <meta name="description" content="Distributed systems, settlement, and why payments aren't just messages">
+  <meta name="author" content="Oona Singh">
+  <link rel="canonical" href="https://oonasingh.com/newsletter/issues/why-sending-money-is-harder-than-sending-a-text.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Why Sending Money Is Harder Than Sending a Text — Oona Singh">
+  <meta property="og:description" content="Distributed systems, settlement, and why payments aren't just messages">
+  <meta property="og:url" content="https://oonasingh.com/newsletter/issues/why-sending-money-is-harder-than-sending-a-text.html">
+  <meta property="og:site_name" content="Oona Singh">
+  <meta property="article:author" content="https://oonasingh.com/">
+  <meta property="article:published_time" content="2026-07-04T00:00:00Z">
+  <meta property="article:modified_time" content="2026-07-04T00:00:00Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Why Sending Money Is Harder Than Sending a Text — Oona Singh">
+  <meta name="twitter:description" content="Distributed systems, settlement, and why payments aren't just messages">
+  <meta name="twitter:site" content="@oona_singh_">
+  <meta name="twitter:creator" content="@oona_singh_">
+  <link rel="stylesheet" href="../../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": "https://oonasingh.com/newsletter/issues/why-sending-money-is-harder-than-sending-a-text.html#article",
+    "headline": "Why Sending Money Is Harder Than Sending a Text",
+    "description": "Distributed systems, settlement, and why payments aren't just messages",
+    "articleSection": "Newsletter",
+    "inLanguage": "en-US",
+    "datePublished": "2026-07-04T00:00:00Z",
+    "dateModified": "2026-07-04T00:00:00Z",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://oonasingh.com/newsletter/issues/why-sending-money-is-harder-than-sending-a-text.html"
+    },
+    "author": {
+      "@type": "Person",
+      "@id": "https://oonasingh.com/#oona-singh",
+      "name": "Oona Singh",
+      "url": "https://oonasingh.com/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "@id": "https://oonasingh.com/#oona-singh",
+      "name": "Oona Singh"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="site-header">
+      <a class="site-title" href="/">Oona Singh</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/newsletter/">Newsletter</a>
+        <a href="https://oona.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </header>
+    <main>
+      <article class="newsletter-article">
+        <p class="meta"><a href="../">Newsletter archive</a> · <time datetime="2026-07-04">July 4, 2026</time></p>
+        <h1>Why Sending Money Is Harder Than Sending a Text</h1>
+        <p class="dek">Distributed systems, settlement, and why payments aren't just messages</p>
+        <div class="newsletter-body">
+          <p>Hello all.</p>
+          <p>Welcome and welcome back.</p>
+          <p>Following my last newsletter, let’s continue where we left off.</p>
+          <p>Today, we’re discussing why some payments are slow, and why others fail. If I wanted to send $300 to my brother from Dubai, it could take a few days. If I wanted to send him a link to a TikTok about desirability politics on Love Island, it would take seconds.</p>
+          <p>Both actions, on my end, take the same amount of time, but the receiving on the other end happens on completely different timelines. Why? Well, you’re in luck. That’s what we’re discussing today!</p>
+          <p><strong>Very simply, messaging systems are communication systems and relay information. Payment systems are better thought of as distributed state machines.</strong> These are very different engineering issues.</p>
+          <p>The function of a messaging system is to answer one question: Did the intended recipient receive the information (message)?</p>
+          <p>The function of a payment system is slightly different, and the stakes are much higher:</p>
+          <p>Can every participant agree that ownership has changed exactly once?</p>
+          <p>For ease of reading today we’ve got the following sections:</p>
+          <p><strong>I) Information vs. State</strong></p>
+          <p><strong>II) Why “Exactly Once” Is Difficult</strong></p>
+          <p><strong>III) There Is No Shared Database</strong></p>
+          <p><strong>IV) Coordination Is Hard</strong></p>
+          <p><strong>V) Settlement</strong></p>
+          <p><strong>VI) Why Payments Fail</strong></p>
+          <p><strong>VII) Conclusion</strong></p>
+
+          <h2>I) Information vs. State</h2>
+          <p>When you send a WhatsApp message, you’re sending information.</p>
+          <p>When you send money, you’re changing ownership.</p>
+          <p>Those sound similar, but from an engineering perspective they’re completely different problems.</p>
+          <p>Messages answer one simple question:</p>
+          <p><em>Did the recipient receive the information?</em></p>
+          <p>Payments answer a much harder one:</p>
+          <p><em>Can every institution involved agree that ownership changed exactly once?</em></p>
+          <p>That difference of information versus state is why payments are a much harder engineering problem. Simplistically, we can copy information. We cannot transfer and copy ownership.</p>
+          <p>If I send my brother a link to a TikTok about Love Island, we’ve both received the same information. If I tell him, “You owe me $300 because you were wrong about this,” again, nothing has changed, though he might be annoyed.</p>
+          <p>Alternatively, if my brother actually sends me $300, the financial system needs to ensure I no longer own those dollars and that he does. The financial system has to ensure that both of us cannot own the same $300 at the same time.</p>
+          <p>The change in ownership here is a state transition. So, the system’s state has gone from “Uday owns $300” to “Oona owns $300.” In this transfer, each participant has to agree that this transition happened correctly.</p>
+          <p>Importantly, a payment isn’t processed by one giant computer that decides, “Okay, this happened. This did not. This happened. This did not.” As multiple independent systems participate in the payment, the engineering becomes significantly more complex. Your bank, the payment network, the receiving bank, and sometimes even a central bank all maintain their own databases. This is what computer scientists call a distributed system.</p>
+          <figure><img src="/newsletter/images/rube-goldberg-machine.gif" alt="Rube Goldberg cartoon of a man wearing an elaborate contraption of pipes, a boot, a football, a watering can and a bird, all built to perform one simple task." width="550" height="285" loading="lazy"></figure>
+          <p>(Illustration by Rube Goldberg).</p>
+          <p>The difficult part isn’t moving information between these systems. In this case, it’s ensuring that every institution records the same state transition in its own ledger.</p>
+
+          <h2>II) Why “Exactly Once” Is Difficult</h2>
+          <p>Imagine you hit “Send” on WhatsApp just as your Wi-Fi disconnects. You are now left wondering, did your message go through? Did it not? If you’re unsure, you simply press Send again (if you’re bold). The worst case is that you send the same message twice, which is a little irksome, but it is no great catastrophe.</p>
+          <p>On the other hand, imagine the same thing happens during a bank transfer. You decide to send $300, but you lose connection at that moment. Suddenly, you have a plethora of other questions. Did the bank receive the instruction? Did it debit your account? Did the receiving bank receive the payment? Should you press Send again?</p>
+          <p>This uncertainty about whether your request was received, whether it was processed, and whether it is safe to resend is one of the hardest problems engineers have to solve in payments. For this reason, banks and other payment systems build systems around idempotency.</p>
+          <figure><img src="/newsletter/images/geek-and-poke-idempotent.jpeg" alt="Geek &amp; Poke comic. Idempotent: asked &quot;Ready?&quot; on day n and day n+1, a programmer answers &quot;Almost&quot; both times. Non-idempotent: the answer on day n+1 becomes &quot;Almoster&quot;." width="1000" height="1415" loading="lazy"></figure>
+          <p>(Illustration by Geek &amp; Poke<strong>).</strong></p>
+          <p>In simple terms, idempotency means repeating the same request produces the same outcome as making it once. In payments, this is used to ensure a customer doesn’t accidentally pay twice if the same request is retried.</p>
+
+          <h2>III) There Is No Shared Database</h2>
+          <p>Whether it seems self-evident or not, there is no shared banking system for everywhere in the world. This invites its own host of engineering and regulatory complexities. Every bank maintains its own ledger. Your balance is simply the balance recorded in your bank’s ledger. My bank maintains a completely separate ledger for my accounts. Neither bank can directly edit the other’s records. When money moves between them, they must communicate, reconcile, and eventually settle while each independently updates its own books.</p>
+          <p>To communicate, banks exchange standardized financial messages. You’ve probably heard of IBANs and SWIFT messages. An IBAN identifies a bank account, while SWIFT provides the secure messaging network many banks use to exchange payment instructions internationally. Importantly, and I cannot stress this enough, messages do not move money; they only relay information about moving money. The actual transfer of value still requires each institution to update its own ledger and eventually settle with one another.</p>
+
+          <h2>IV) Coordination Is Hard</h2>
+          <p>Returning to our comparison between messaging and payments, here’s where the complexity begins. Before a payment can complete, it has to pass through multiple independent checks:</p>
+          <ul><li>Does the sender have sufficient funds?</li>
+          <li>Is the payment fraudulent?</li>
+          <li>Does it trigger sanctions screening?</li>
+          <li>Does it require an AML check?</li>
+          <li>Is the recipient account valid?</li>
+          <li>Can the payment network route it?</li>
+          <li>Has settlement occurred?</li>
+          <li>Has the receiving bank credited the customer?</li>
+        </ul>
+        <p><em>None of these systems shares a single source of truth.</em> Instead, each system must independently decide whether the payment is valid before updating its own records.</p>
+
+        <h2>V) Settlement</h2>
+        <p>And maybe one of the biggest misconceptions is that when your money leaves your banking app, the payment has completed. Usually it has not. When your balance decreases, your bank has updated its own ledger. As we discussed in the previous newsletter, your bank updates its internal ledger almost immediately. From your perspective, the payment looks complete. Settlement is something different. It is the point at which the institutions involved actually transfer value between themselves and agree that the payment is final.</p>
+        <p>A very simplified version of this chain is:</p>
+        <p>Customer sends money  Bank debits customer’s account  Payment instruction is sent  Settlement between financial institutions  Receiving bank credits recipient  Both banks reconcile records.</p>
+
+        <h2>VI) Why Payments Fail</h2>
+        <p>Clearly, as payments involve so many independent systems, there are simply many more avenues for something to go wrong. A payment may fail because the message times out before reaching the next institution in the chain, details are invalid, sanctions or AML trigger manual review, receiving account is closed, duplicate payment protection blocks the request, closed settlement windows for the day, one institution lacks liquidity, reconciliation detects inconsistent records between institutions. Payments fail for a multitude of reasons that often have nothing to do with your phone, but in the process between the various financial institutions after you’ve already pressed send.</p>
+
+        <h2>VII) Conclusion</h2>
+        <p>So let’s return to my original example. If I send my brother a TikTok dissecting the latest Love Island recoupling, the system only has to answer one question:</p>
+        <p>Did he receive the video? If I send him $300, the financial system must answer a much harder question: Did multiple independent institutions successfully agree that ownership changed exactly once, without creating or destroying money, duplicating the payment, or crediting the wrong account?</p>
+        <p>The good news is this is changing! Faster payment systems, real-time settlement initiatives, and newer payment technologies are steadily reducing these delays. The engineering challenges remain, but newer systems are solving them in increasingly efficient ways.</p>
+        <p>So, dear readers, do not be fooled! Even when payments appear near instant, an enormous amount of coordination is happening under the hood. The interface may feel nearly as simple as sending a text, but you’re dealing with a highly complex system, very different from sending a simple text. Messaging systems move information. Payment systems coordinate changes in ownership across independent ledgers.</p>
+        <p>Thanks for reading.</p>
+        <p>Until next time.</p>
+        <p>Bye.</p>
+        </div>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

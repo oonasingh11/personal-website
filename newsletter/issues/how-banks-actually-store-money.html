@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How Banks Actually Store Money — Oona Singh</title>
+  <meta name="description" content="Ledgers, liabilities, and what “real-time” really means under the UI">
+  <meta name="author" content="Oona Singh">
+  <link rel="canonical" href="https://oonasingh.com/newsletter/issues/how-banks-actually-store-money.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How Banks Actually Store Money — Oona Singh">
+  <meta property="og:description" content="Ledgers, liabilities, and what “real-time” really means under the UI">
+  <meta property="og:url" content="https://oonasingh.com/newsletter/issues/how-banks-actually-store-money.html">
+  <meta property="og:site_name" content="Oona Singh">
+  <meta property="article:author" content="https://oonasingh.com/">
+  <meta property="article:published_time" content="2025-12-31T00:00:00Z">
+  <meta property="article:modified_time" content="2025-12-31T00:00:00Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How Banks Actually Store Money — Oona Singh">
+  <meta name="twitter:description" content="Ledgers, liabilities, and what “real-time” really means under the UI">
+  <meta name="twitter:site" content="@oona_singh_">
+  <meta name="twitter:creator" content="@oona_singh_">
+  <link rel="stylesheet" href="../../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": "https://oonasingh.com/newsletter/issues/how-banks-actually-store-money.html#article",
+    "headline": "How Banks Actually Store Money",
+    "description": "Ledgers, liabilities, and what “real-time” really means under the UI",
+    "articleSection": "Newsletter",
+    "inLanguage": "en-US",
+    "datePublished": "2025-12-31T00:00:00Z",
+    "dateModified": "2025-12-31T00:00:00Z",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://oonasingh.com/newsletter/issues/how-banks-actually-store-money.html"
+    },
+    "author": {
+      "@type": "Person",
+      "@id": "https://oonasingh.com/#oona-singh",
+      "name": "Oona Singh",
+      "url": "https://oonasingh.com/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "@id": "https://oonasingh.com/#oona-singh",
+      "name": "Oona Singh"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="site-header">
+      <a class="site-title" href="/">Oona Singh</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/newsletter/">Newsletter</a>
+        <a href="https://oona.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </header>
+    <main>
+      <article class="newsletter-article">
+        <p class="meta"><a href="../">Newsletter archive</a> · <time datetime="2025-12-31">December 31, 2025</time></p>
+        <h1>How Banks Actually Store Money</h1>
+        <p class="dek">Ledgers, liabilities, and what “real-time” really means under the UI</p>
+        <div class="newsletter-body">
+          <p>Hello all.<br>Welcome and welcome back.</p>
+          <p>Today, we are going to look at how banks store money.</p>
+          <p>If you have ever wondered how a bank stores money, or where the money actually goes in a bank, you’re in the right place.</p>
+          <p>So, let us begin with the question of the day.</p>
+
+          <h2>How does a bank store money?</h2>
+          <p>At its core, a bank does not store money as most people imagine.</p>
+          <p>A bank actually stores records, not physical cash. More specifically, a bank maintains a ledger of claims and obligations. This ledger is the most foundational part of banking. Everything else in modern banking, including mobile apps, cards, IBANs, and wires, sits on top of this ledger. The ledger is the accounting truth. Moreover, if the ledger is wrong, nothing else matters.</p>
+
+          <h2>What is a bank account, really?</h2>
+          <p>To understand how those records are tied to individuals or businesses, we need to understand what a bank account actually is.</p>
+          <p>It is tempting to think of a bank account as a container of money. A more accurate way to think about it is as a ledger entry representing the bank’s liability to a customer.</p>
+          <p>What does that mean in practice?</p>
+          <p>If your bank balance reads 10,000 USD, that does not mean the bank is holding a specific pile of 10,000 USD on your behalf, with your name on it! It means the bank owes you 10,000 USD.</p>
+          <p>From an accounting perspective:</p>
+          <ul><li>The customer balance is a liability for the bank.</li>
+          <li>A loan issued by the bank is an asset for the bank.</li>
+        </ul>
+        <p>If you’re also anointed and aware of the world of accounting, you’ll know this is standard double-entry accounting, not a fintech invention.</p>
+
+        <h2>How is an account created?</h2>
+        <p>When a bank opens an account, no money moves.</p>
+        <p>Instead, the bank creates a ledger account identifier and associates it with:</p>
+        <ul><li>A customer or legal entity,</li>
+        <li>a currency,</li>
+        <li>and a set of rules such as overdraft permissions, interest treatment, or restrictions.</li>
+      </ul>
+      <p>The balance starts at zero. There is no transfer of funds at account creation. There is only a record at creation. </p>
+      <p>Before computers, this same logic existed on paper. Clerks maintained handwritten or mechanical ledgers where debits and credits were recorded manually. And over time, while the method of recording this has changed, the model has not. My next question is, then ok, where is the money actually stored inside a bank? How is the division between a customer account, the bank’s account/balances with other banks, etc., noted?</p>
+      <p>This is where things get more confusing. Money in banking exists in layers, not in a single place.</p>
+
+      <h3>1) Internal bank ledger (customer balances)</h3>
+      <p>This is the layer customers interact with.</p>
+      <ul><li>It is the source of accounting truth for customer balances.</li>
+      <li>It lives in the bank’s core ledger.</li>
+      <li>It is typically updated immediately when transactions occur.</li>
+    </ul>
+    <p>Again, this layer represents claims and records, <strong>not</strong> physical cash.</p>
+
+    <h3>2) Bank settlement accounts (nostro accounts)</h3>
+    <p>Banks also hold accounts with other banks or with the central bank. These are called nostro accounts, meaning “our money with you”. They are used to settle obligations between banks, like when you send money to an account at another bank.</p>
+    <p>Unlike customer balances, these accounts:</p>
+    <ul><li>Update more slowly,</li>
+    <li>are often batch-processed,</li>
+    <li>and may lag what customers see internally.</li>
+  </ul>
+
+  <h3>3) Central bank money</h3>
+  <p>This is the final settlement layer. Central bank money is used to settle obligations between banks themselves. Customers never interact with this layer directly, but it sits beneath the entire money system within a bank.</p>
+
+  <h2>The key (and maybe surprising) insight</h2>
+  <p>Customer money and settlement money are not the same thing.</p>
+  <p>A customer’s balance can change instantly in the internal ledger, while the actual interbank settlement may happen later, or even fail and require correction.</p>
+  <p>This separation is why:</p>
+  <ul><li>Payments are asynchronous,</li>
+  <li>reconciliation exists,</li>
+  <li>reversals and adjustments are necessary,</li>
+  <li>and “real-time” banking often only applies to the customer-facing layer.</li>
+</ul>
+
+<h2>What does a “real-time” transaction actually look like under a bank’s UI?</h2>
+<p>When a banking app shows a transaction as “completed” or “instant”, that does not mean money has physically moved between banks in real time.</p>
+<p>Let’s walk through what actually happens. When you make a transfer, card payment, or withdrawal, the bank first updates its internal ledger. This ledger records that your balance has changed and reflects the bank’s new obligation to you. At this point, your balance changes immediately, the UI updates instantly, and, from the customer’s perspective, the transaction appears complete. However, this is only the internal accounting step. Simultaneously and behind the scenes, a second process begins. The bank initiates external settlement, which may involve another bank, a payment scheme, or the central bank. This process is slower, asynchronous, and subject to batching, cut-off times, and failure.</p>
+<p>So what looks like a single real-time transaction in the app is actually two different things happening on different timelines: 1) an immediate update to the bank’s internal ledger, and 2) a delayed settlement process between institutions.</p>
+<p>This is why banks can show you money instantly while still taking hours or days to settle transactions with other banks fully.</p>
+
+<h2>Why does the bank do it this way?</h2>
+<p>Because the internal ledger represents promises, not the physical movement of cash.</p>
+<p>Banks assume that most settlements will succeed. Updating the ledger immediately provides a good customer experience and allows the system to continue operating smoothly. If something goes wrong later, the bank does not erase history. Instead, it applies reversals or compensating entries to correct the ledger while preserving a complete audit trail. This design is intentional. It is what allows banking systems to be fast, auditable, and resilient at the same time.</p>
+
+<h2>The important distinction</h2>
+<p>“Real-time” banking usually means real-time ledger updates and real-time customer visibility. Real-time does not mean real-time interbank settlement and real-time finality at the central bank level. Those are different layers of the system.</p>
+<p>Understanding this distinction is critical because most of the complexity in banking exists in the gap between what the customer sees and what settles externally.</p>
+<p>Thank you for reading, and Happy New Year!</p>
+<p>Next time, we will discuss why payments are slow (and why they fail). After that, we will discuss core ledgers (primitives, invariants, append-only systems).</p>
+<p>Bye.</p>
+        </div>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

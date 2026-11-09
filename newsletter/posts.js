@@ -6,6 +6,18 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 
 export const posts = [
   {
+    slug: 'why-sending-money-is-harder-than-sending-a-text',
+    title: 'Why Sending Money Is Harder Than Sending a Text',
+    date: '2026-07-04',
+    summary: "Distributed systems, settlement, and why payments aren't just messages."
+  },
+  {
+    slug: 'how-banks-actually-store-money',
+    title: 'How Banks Actually Store Money',
+    date: '2025-12-31',
+    summary: 'Ledgers, liabilities, and what “real-time” really means under the UI.'
+  },
+  {
     slug: 'machine-to-machine-payments',
     title: "Machine Money: Cloudflare's NET Dollar",
     date: '2025-11-07',
