@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oons Drone 2 — Oona Singh</title>
+  <meta name="description" content="continuation of my drone simulator/game series">
+  <meta name="author" content="Oona Singh">
+  <link rel="canonical" href="https://oonasingh.com/newsletter/issues/oons-drone-2.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Oons Drone 2 — Oona Singh">
+  <meta property="og:description" content="continuation of my drone simulator/game series">
+  <meta property="og:url" content="https://oonasingh.com/newsletter/issues/oons-drone-2.html">
+  <meta property="og:site_name" content="Oona Singh">
+  <meta property="article:author" content="https://oonasingh.com/">
+  <meta property="article:published_time" content="2024-09-12T00:00:00Z">
+  <meta property="article:modified_time" content="2024-09-12T00:00:00Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Oons Drone 2 — Oona Singh">
+  <meta name="twitter:description" content="continuation of my drone simulator/game series">
+  <meta name="twitter:site" content="@oona_singh_">
+  <meta name="twitter:creator" content="@oona_singh_">
+  <link rel="stylesheet" href="../../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": "https://oonasingh.com/newsletter/issues/oons-drone-2.html#article",
+    "headline": "Oons Drone 2",
+    "description": "continuation of my drone simulator/game series",
+    "articleSection": "Newsletter",
+    "inLanguage": "en-US",
+    "datePublished": "2024-09-12T00:00:00Z",
+    "dateModified": "2024-09-12T00:00:00Z",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://oonasingh.com/newsletter/issues/oons-drone-2.html"
+    },
+    "author": {
+      "@type": "Person",
+      "@id": "https://oonasingh.com/#oona-singh",
+      "name": "Oona Singh",
+      "url": "https://oonasingh.com/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "@id": "https://oonasingh.com/#oona-singh",
+      "name": "Oona Singh"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="site-header">
+      <a class="site-title" href="/">Oona Singh</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/newsletter/">Newsletter</a>
+        <a href="https://oona.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </header>
+    <main>
+      <article class="newsletter-article">
+        <p class="meta"><a href="../">Newsletter archive</a> · <time datetime="2024-09-12">September 12, 2024</time></p>
+        <h1>Oons Drone 2</h1>
+        <p class="dek">continuation of my drone simulator/game series</p>
+        <div class="newsletter-body">
+          <p>Hello all.</p>
+          <p>Welcome and welcome back.</p>
+          <p>I'm sure everyone has been eagerly awaiting an update. Surely you have!</p>
+          <p>Well, here it is: I began tedious work on my drone simulator/video game, and the process went a little like this Charles Barotti cartoon from May 2, 1977, in the New Yorker.</p>
+          <figure><img src="/newsletter/images/oons-drone-2-1.webp" alt="" width="1456" height="1094" loading="lazy"></figure>
+          <p>Here is a little section breakdown to help you out:</p>
+          <p><strong>I. The Asset Model</strong></p>
+          <p><strong>II. Model Specs</strong></p>
+          <p><strong>III.The Drone i<s>n Action </s>and Some Bad Physics</strong></p>
+          <p><strong>Final Thoughts</strong></p>
+
+          <h4>I. The Asset Model</h4>
+          <p>The first thing I did was purchase an asset package for my drone model. In Unity, an asset package resembles a library or a gem in Rails. Just like gems provide pre-built functionalities or tools in Ruby on Rails, Unity asset packages provide ready-made models, textures, scripts, and other assets you can use in your game development without starting from scratch.</p>
+          <p>I used the Unity Hub's store to find and purchase this asset model, which was a straightforward process. I selected a model based on its specs (which I didn’t fully understand before this exercise). For reference, here are the specs of the model I purchased (feel free to skip the next section through to the next * if you’re not interested in the details):</p>
+          <p><code>“Polygons: 2,592</code></p>
+          <ul>
+            <li><code>Vertices: 2,581</code></li>
+            <li><code>Textures: Color, Metallic, Roughness, Normal, AO</code></li>
+            <li><code>Resolution: All textures are 2k</code></li>
+            <li><code>UV Mapping: Yes</code></li>
+            <li><code>PBR (Physically Based Rendering): Yes</code></li>
+            <li><code>Geometry Type: Polygon mesh</code></li>
+            <li><code>Unwrapped UVs: Mixed</code></li>
+            <li><code>Customization Options: Wheels and shafts are separate objects, so they could be turned off/removed for "in-flight" mode.</code></li>
+            <li><code>Model Association: Not tied to any existing UCAV design, so no worries about intellectual property.”</code></li>
+          </ul>
+
+          <h4>II. Model Specs</h4>
+          <p><em><strong>What does this mean?</strong></em></p>
+          <p>If you remember from your geometry class, polygons - typically triangles in game development, are the foundation of 3D models. A polygon count of 2592 is low compared to other models, which is favorable for performance, especially as I'm running this simulation on my MacBook, which has capped processing power.</p>
+          <p>Vertices are probably also familiar to you. They are points in 3D space that define the corners or junctions of polygons; similarly, fewer vertices mean better performance.</p>
+          <p>The model is well-optimized for a game environment because it has a low polygon and vertex count. This makes it possible for real-time rendering in Unity.</p>
+          <p>The specs also include 5 textures, which determine the color, the metallic quality of its surfaces, how well it reflects light, and the ability to add grooves or bumps without increasing the polygon count (which enhances realism without increasing the required processing power for running the sim), and shadows to add to the depth.</p>
+          <p>These textures provide a high level of detail and realism to the model. A 2k resolution is usually balanced, offering good visual quality without too taxing on performance. The different texture maps (Metallic, Roughness, Normal, AO) help achieve a realistic look by accurately simulating various surface properties.</p>
+          <p>This model also has flexibility because the wheels and shafts can be removed or adjusted as they are ornamental.</p>
+          <p>UV Mapping, which this model has, is how textures are used on its 3D surface. Good UV mapping ensures that the model's textures (like colors and surface details) look natural.</p>
+          <p>PBR, or Physically Based Rendering materials, is how the light interacts with surfaces, including its metallicity, roughness, and surface normals. PBR is necessary because it makes the drone look realistic in different lighting conditions. The polygon mesh geometry this model uses is the standard for 3D models in games (it utilizes interconnected polygons used for models).</p>
+          <p>This is an example of polygon mesh:</p>
+          <figure><img src="/newsletter/images/oons-drone-2-2.webp" alt="" width="500" height="182" loading="lazy"></figure>
+          <p>*</p>
+
+          <h4>III. The Drone i<s>n Action </s>and Some Bad Physics</h4>
+          <p>So, after purchasing the model, I imported it into my Unity project, so my screen looked like this:</p>
+          <figure><img src="/newsletter/images/oons-drone-2-3.png" alt="" width="1456" height="606" loading="lazy"></figure>
+          <p>This is pretty cool. We have our drone on our screen. The next thing to do, to enable all the physics interactions of the model, was to set up the Rigidbody component. The Rigidbody component in Unity allows our drone to interact with the physics engine, letting it respond to forces like gravity, drag, and collisions realistically.</p>
+          <p>That is what the variables of the Rigidbody  component look like:</p>
+          <figure><img src="/newsletter/images/oons-drone-2-4.png" alt="" width="906" height="508" loading="lazy"></figure>
+          <p>If you remember from your physics class(if you took one)  - we have mass (which I set to 8000kg as a more realistic representation of this type of UCAV drone's weight). However, I faced a problem when initially setting this up: I didn't consider how much proportionate force I would need to move or stop it; more on that later.</p>
+          <p>Drag is a force opposing an object's motion; Unity here simulates aerodynamic resistance. A higher drag value means the drone <em>should</em> decelerate quickly when you stop applying thrust, giving it a sense of realism — like it's moving through air. A lower drag value will make the drone glide further with less resistance.</p>
+          <p>Angular Drag is a property that affects how quickly an object stops rotating. It represents the rotational equivalent of linear drag, simulating the air resistance or friction that opposes rotational motion. This property in Unity affects how much rotational resistance the drone experiences. Adjusting this value can help balance how quickly the drone stops turning after applying a rotation force, leading to more realistic and controllable flight behavior.</p>
+          <p>I also had to write a Script in C# for my drone controls in VS code - this is a short excerpt of the code written for the rotation controls and forward/sideways movement.</p>
+          <figure><img src="/newsletter/images/oons-drone-2-5.png" alt="" width="1292" height="1020" loading="lazy"></figure>
+          <p>After writing the code, I expected my drone to move smoothly. Unfortunately, that wasn’t the case. I faced the same problem repeatedly: whenever I started my drone, it would drop immediately to a Y position of around -1528.013 from 0.</p>
+          <figure><img src="/newsletter/images/oons-drone-2-6.png" alt="" width="1456" height="516" loading="lazy"></figure>
+          <p>I realized that the drone would naturally fall without counteracting gravity, so I had to find the right balance of upward thrust (liftForce) to keep it in the air.</p>
+          <p>I’m still wrestling with getting the controls to work, but at least I’ve figured out one of the problems.</p>
+
+          <h4>Final Thoughts </h4>
+          <p>Anyway, that's a wrap for this week! This week's newsletter may have been anticlimactic, but I'm still figuring out how to get my drone to move. This is a little harder to do than I thought initially. My thinking is there's an issue with how I've written the code to take interactions from my keyboard.</p>
+          <figure><img src="/newsletter/images/oons-drone-2-7.png" alt="" width="1456" height="769" loading="lazy"></figure>
+          <p>The next steps here seem to be countless, from creating a better-looking environment and figuring out what all the cameras and scenes are to getting my UCAV to move and respond properly. However, I’m optimistic that this will <em>eventually</em> be somewhat usable/playable. Maybe? </p>
+          <p>Thanks for reading. Until next time. Bye.</p>
+        </div>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

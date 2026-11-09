@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How AI Works After Training — Oona Singh</title>
+  <meta name="description" content="Part 3 of My AI Series - inference, alignment, evaluation (including some visual aids)">
+  <meta name="author" content="Oona Singh">
+  <link rel="canonical" href="https://oonasingh.com/newsletter/issues/how-ai-works-after-training.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How AI Works After Training — Oona Singh">
+  <meta property="og:description" content="Part 3 of My AI Series - inference, alignment, evaluation (including some visual aids)">
+  <meta property="og:url" content="https://oonasingh.com/newsletter/issues/how-ai-works-after-training.html">
+  <meta property="og:site_name" content="Oona Singh">
+  <meta property="article:author" content="https://oonasingh.com/">
+  <meta property="article:published_time" content="2025-08-23T00:00:00Z">
+  <meta property="article:modified_time" content="2025-08-23T00:00:00Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How AI Works After Training — Oona Singh">
+  <meta name="twitter:description" content="Part 3 of My AI Series - inference, alignment, evaluation (including some visual aids)">
+  <meta name="twitter:site" content="@oona_singh_">
+  <meta name="twitter:creator" content="@oona_singh_">
+  <link rel="stylesheet" href="../../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": "https://oonasingh.com/newsletter/issues/how-ai-works-after-training.html#article",
+    "headline": "How AI Works After Training",
+    "description": "Part 3 of My AI Series - inference, alignment, evaluation (including some visual aids)",
+    "articleSection": "Newsletter",
+    "inLanguage": "en-US",
+    "datePublished": "2025-08-23T00:00:00Z",
+    "dateModified": "2025-08-23T00:00:00Z",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://oonasingh.com/newsletter/issues/how-ai-works-after-training.html"
+    },
+    "author": {
+      "@type": "Person",
+      "@id": "https://oonasingh.com/#oona-singh",
+      "name": "Oona Singh",
+      "url": "https://oonasingh.com/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "@id": "https://oonasingh.com/#oona-singh",
+      "name": "Oona Singh"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="site-header">
+      <a class="site-title" href="/">Oona Singh</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/newsletter/">Newsletter</a>
+        <a href="https://oona.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </header>
+    <main>
+      <article class="newsletter-article">
+        <p class="meta"><a href="../">Newsletter archive</a> · <time datetime="2025-08-23">August 23, 2025</time></p>
+        <h1>How AI Works After Training</h1>
+        <p class="dek">Part 3 of My AI Series - inference, alignment, evaluation (including some visual aids)</p>
+        <div class="newsletter-body">
+          <p>Hello all.</p>
+          <p>Welcome and welcome back.</p>
+          <p>If you haven’t read my last article, I think you would be better off reading it before reading this one,  but you have agency - so you can choose. I would highly suggest reading it though. <a href="https://oona.substack.com/p/how-does-ai-learn-can-machines-think" target="_blank" rel="noopener">Here</a>.</p>
+          <p>That was your warning! Now we’re getting into it. Today, we will be going over inference, alignment, and evaluation in AI (which will make sense soon). </p>
+          <p>Sections will be:</p>
+          <p>I. What is Inference</p>
+          <p>II. Alignment After Training</p>
+          <p>III. Evaluation: How Outputs are Judged</p>
+          <p>IV. Limits</p>
+          <p>V. Fin</p>
+          <p><strong>I. What is Inference</strong></p>
+          <p>So - if you recall from the last <a href="https://oona.substack.com/p/how-does-ai-learn-can-machines-think" target="_blank" rel="noopener">newsletter</a>, AI training involves all the things we discussed last time. Backpropagation and gradient descent, etc. It is a costly and lengthy process and that’s how AI learns/is trained. The next step in the process, after these models are built and trained, is inference. What is inference, you ask? </p>
+          <p>Excellent question. Inference follows training. For example, inference is a process by which AI comes to conclusions on its own with brand-new data. This is actually the goal with machine learning models, AI that can come to its own conclusions without knowledge of any desired outcome. </p>
+          <p>For example, AI inference would be AI being able to predict the ending to a film without prior knowledge of the film, based on related but not identical data. Another way to frame this is, how does AI operate at application runtime without previous experience in its exact task? </p>
+          <figure><img src="/newsletter/images/how-ai-works-after-training-1.webp" alt="" width="1024" height="536" loading="lazy"></figure>
+          <p><em>(taken from <a href="https://xpressoai.medium.com/the-difference-between-ai-training-and-inference-e4e5770c1bf9" target="_blank" rel="noopener">xpressoai’s</a> article, describing the difference between training and inference).</em></p>
+          <p>Simply put, inference is when you take your hopefully well-trained model and take it out for a spin. You’re trying to test out if your model can actually do what it’s asked, ie, can it solve problems. You’re past the feeding it data to teach it, and you’re into the looking at the outputs stage. The best-case scenario is it doesn’t hit any curbs - it just glides smoothly. This is often not the reality, as models can be confidently wrong, which, if you’re a longtime ChatGPT user or any generative AI chat service user, you might be aware of.</p>
+          <p>Inference is the model in use; we evaluate its behavior with tests. We are basically testing it to see how it will react in a new scenario with new data.</p>
+          <p>The real kicker here is that inference is the simple part. Training is the heavy lifting here, with all the backpropagation, gradient descent, and weight tweaking. Inference? That’s just a <em>forward pass</em>. You hand the model some input (text, image, code), it turns that into numbers (embeddings), runs those through its layers, and spits out an output distribution or a probability cloud of “what should come next.” From there, it picks the most likely continuation (or inference).</p>
+          <p>The good news? Inference is getting dramatically cheaper. As models improve and infrastructure gets optimized, the cost per query has fallen off a cliff. OpenAI saw a 100x drop, and Anthropic a 60x drop in just one year.</p>
+          <figure><img src="/newsletter/images/how-ai-works-after-training-2.webp" alt="" width="800" height="448" loading="lazy"></figure>
+          <p><em>(taken from the <a href="https://www.stateof.ai/2024" target="_blank" rel="noopener">State of AI 2024)</a>.</em></p>
+          <p>As we discussed last time, these models don’t actually know anything, but they perform knowledge with dazzling mimicry. Inference, as with most of this stuff, is very much an emperor’s new clothes illusion; there is no secret knowledge that these models have in their ‘brains’, they mimic thinking, but they aren’t thinking. They have relational understandings of their data and can thus draw inferences, so this is actually an elaborate form of mapping patterns. What we see with inference is either confident inaccuracy (hallucinating with conviction) or perhaps the correct answer.</p>
+          <p>The question we have when we are in our inference phase with our models is not whether the model knows the answer.  Our model doesn’t know anything! We are actually, semantically, asking a different question: can our model rise to the task of providing useful outputs when our input data is different? </p>
+          <p>Inference, thus, can reflect our reality quite quickly; at best, you see the fruits of training labor - the model works and convincingly provides the correct outputs on our new data when exposed. However, at the worst, we are reminded that these models are just stochastic parrots in crafty garb.</p>
+          <p><strong>II. Alignment After Training</strong></p>
+          <p>While inference is where we take our inputs and see what our outputs are, alignment is how we ensure those outputs are useful, safe, and acceptable. Alignment is basically a set of guardrails to keep our models from going off the deep end.</p>
+          <p>If you’ve ever asked ChatGPT a question that its alignment protocols have forbidden it from answering, that’s real-time alignment at work (which can be annoying).</p>
+          <p>There are a few different ways this alignment gets built:</p>
+          <ol>
+            <li><strong>Supervised Fine-Tuning (SFT).</strong><br>At first, researchers take a pre-trained model and fine-tune it on curated datasets of “good” behavior, think hand-picked Q&amp;As, explanations, and polite responses. This gives the model a baseline sense of what’s preferred.</li>
+            <li><strong>Reinforcement Learning from Human Feedback (RLHF).</strong><br>Next, the model is trained to <em>rank</em> outputs. Humans score which answers are better, and the model learns a “reward model” that nudges future generations toward preferred responses. That’s how chatbots became less blunt and more conversational.</li>
+            <li><strong>Direct Preference Optimization (DPO) &amp; friends.</strong><br>A newer approach skips the middle step and directly optimizes the model using preference comparisons. It’s cleaner, faster, and often less finicky than RLHF.</li>
+          </ol>
+          <p>But alignment doesn’t just happen once during training; it’s often layered on top of inference. When a model produces a probability cloud of possible outputs, alignment systems act as filters, rerankers, or steering mechanisms. In practice, this means:</p>
+          <ul>
+            <li>Certain tokens or phrases are down-weighted or blocked.</li>
+            <li>Responses are reranked so “harmless” or “truthful” ones rise to the top.</li>
+            <li>Additional safety models may run in parallel to catch toxic or unsafe content.</li>
+          </ul>
+          <p>So alignment and inference are intertwined: inference gives you <em>all</em> the possibilities, alignment decides which ones actually make it to the screen.</p>
+          <p>Of course, like everything else in life, alignment isn’t free. The more rules you put in place, the more likely you are to clip the model’s wings. A highly aligned model might refuse too often, become overly cautious, or feel a little “vanilla.” On the other hand, a loosely aligned model might be more creative and raw, but also more likely to generate harmful, biased, or plain unhinged outputs. </p>
+          <p>This tension is baked into every chatbot you’ve used. The balance is tricky: safety without sterility, creativity without chaos. Companies are constantly tinkering here, deciding whether to lean toward compliance or user delight, and usually both at once.</p>
+          <p>And then there’s the bigger question: whose values are we aligning to<strong>?</strong> Alignment isn’t just a technical exercise; it’s a cultural and political one. Alignment is also about value pluralism: different communities define ‘safe’ and ‘acceptable’ differently, so global systems need cultural alignment rather than a single universal setting, which makes any global AI deployment an incredibly messy business. Our epistemologies are all informed by our own cultural contexts.</p>
+          <p>So alignment after training is not just about guardrails for inference. It’s about embedding human choices, sometimes subtle, sometimes more heavy-handed, into the pipeline between raw probability and polished response. </p>
+          <p><strong>III. Evaluation: How Outputs Are Judged</strong></p>
+          <p>Evaluation is exactly what it sounds like: it’s just grading our outputs against our respective rubrics. </p>
+          <p>On one side, we have objective metrics. These are neat, mathy, and don’t require a human in the loop. For example:</p>
+          <ul>
+            <li><strong>Perplexity</strong>: measures how well the model predicts the next token (lower is better).</li>
+            <li><strong>BLEU scores</strong>: compare generated text against reference text, standard in translation.</li>
+            <li><strong>Win rates on benchmarks</strong> like MMLU (Massive Multitask Language Understanding) or BIG-bench.</li>
+          </ul>
+          <p>These numbers give us a sense of statistical competence, but they’re a bit like grading an essay on spelling and grammar alone. Correct, but not the whole story.</p>
+          <p>On the other side are subjective metrics: humans judging whether an answer is helpful, safe, or makes sense. This is where “red-teaming” comes in, people deliberately try to break the model by asking weird, adversarial, or even malicious questions. If the AI holds up, it passes; if it cracks, back to alignment class it goes!</p>
+          <p><strong>Determining Good</strong></p>
+          <p>One of the hardest parts of evaluation is deciding what counts as “good.” For factual tasks, truth is relatively easy to check. Does the model know the capital of France? For creative or open-ended tasks, it’s trickier. Is a suggested text message “cringe”? Depends on who you ask. And even for more complex factual tasks, models can hallucinate so fluently that evaluating truth requires careful fact-checking against multiple external sources.</p>
+          <figure><img src="/newsletter/images/how-ai-works-after-training-3.jpeg" alt="" width="708" height="404" loading="lazy"></figure>
+          <p>This is why many labs now combine automated evaluation with human oversight, building layered eval suites. For instance,  models aren’t measured just on accuracy, but also on fairness, calibration, and robustness. Evaluation is expanding from “did it predict correctly?” to “did it behave responsibly, across a wide range of scenarios?”</p>
+          <p><strong>IV. Limits</strong></p>
+          <p>And like the good academic I am, I will turn to the limitations of these models now. On the surface, the narrative arc sounds neat: train a model, run inference, align it, evaluate it! Yet this outwardly simple process is not actually that simple. The limits of today’s AI are everywhere, and they show up most clearly after training.</p>
+          <p><strong>1. Hallucinations</strong></p>
+          <p>Models can generate answers that sound brilliant but are factually false. They don’t know, they predict. That means even aligned, well-evaluated systems can still confidently tell you that Paris is the capital of Italy. Evaluation catches some of this, but never all of it.</p>
+          <p><strong>2. Fragile Alignment</strong></p>
+          <p>Alignment is never perfect. Models can be “jailbroken” into ignoring guardrails, or they may over-correct and refuse harmless queries. The balance between creativity and safety is fragile, and adversaries often find the cracks faster than researchers can patch them.</p>
+          <p><strong>3. Cost and Latency</strong></p>
+          <p>Inference may be cheaper than training, but it’s not free. Serving billions of queries daily burns serious compute, which means environmental costs and financial ones. Optimizations are helping (see the 100x+ drop in inference cost), but scaling remains a ceiling.</p>
+          <p><strong>4. Evaluation Gaps</strong></p>
+          <p>Even the best evaluation suites can’t measure everything. Fairness, truth, creativity, safety, these are very human concepts. Red-teaming helps, but evaluation will always lag behind clever prompt engineering and novel attack surfaces.</p>
+          <p><strong>5. The Black Box Problem</strong></p>
+          <p>We can measure outputs, but we can’t really peer inside. We know the weights, but not exactly what concepts are encoded. Interpretability is advancing, but for now, we live with systems that behave in ways we still can’t fully predict or explain.</p>
+          <figure><img src="/newsletter/images/how-ai-works-after-training-4.png" alt="" width="600" height="300" loading="lazy"></figure>
+          <p><em>(taken from <a href="https://medium.com/@ajay.monga73/the-ai-black-box-why-cybersecurity-professionals-should-care-4bec7ff32c7c" target="_blank" rel="noopener">The AI Black Box: Why Cybersecurity Professionals Should Care</a><strong>).</strong></em></p>
+          <p><strong>Takeaway</strong></p>
+          <p>The limits of AI after training are not just technical quirks; they’re fundamental to AI. AI is impressive, but we are still tinkering with tools that have aspects of them entirely beyond our immediate understanding. </p>
+          <p><strong>V. Fin</strong></p>
+          <p>That’s actually it for this one! Hopefully, that was informative! I’ve included a laundry list of interesting reading + sources below for the super curious readers of mine. </p>
+          <p>Next time, we’re going to get a lot further into one of the most interesting parts of AI to me, which is the moral relativism around AI alignment. </p>
+          <p>Thanks for reading.</p>
+          <p>Until next time. Bye.</p>
+          <p>Works Cited / Further Reading</p>
+          <p>Bai, Y., et al. (2022). <em>Training a Helpful and Harmless Assistant with RLHF</em>. arXiv. <a href="https://arxiv.org/abs/2204.05862" target="_blank" rel="noopener">https://arxiv.org/abs/2204.05862</a></p>
+          <p>Christiano, P., et al. (2017). <em>Deep Reinforcement Learning from Human Preferences</em>. arXiv. <a href="https://arxiv.org/abs/1706.03741" target="_blank" rel="noopener">https://arxiv.org/abs/1706.03741</a></p>
+          <p>Cloudflare. (n.d.). <em>AI inference vs. training</em>. Cloudflare Learning Center. <a href="https://www.cloudflare.com/en-gb/learning/ai/inference-vs-training/" target="_blank" rel="noopener">https://www.cloudflare.com/en-gb/learning/ai/inference-vs-training/</a></p>
+          <p>CRFM. (2022). <em>Holistic Evaluation of Language Models (HELM)</em>. Stanford CRFM. <a href="https://crfm.stanford.edu/helm/" target="_blank" rel="noopener">https://crfm.stanford.edu/helm/</a></p>
+          <p>Guo, H., et al. (2024). <em>InferAligner: Inference-Time Alignment for Harmlessness through Cross-Model Guidance</em>. arXiv. <a href="https://arxiv.org/abs/2401.11206" target="_blank" rel="noopener">https://arxiv.org/abs/2401.11206</a></p>
+          <p>Hendrycks, D., et al. (2021). <em>Measuring Massive Multitask Language Understanding (MMLU)</em>. arXiv. <a href="https://arxiv.org/abs/2009.03300" target="_blank" rel="noopener">https://arxiv.org/abs/2009.03300</a></p>
+          <p>Holtzman, A., et al. (2019). <em>The Curious Case of Neural Text Degeneration</em>. arXiv. <a href="https://arxiv.org/abs/1904.09751" target="_blank" rel="noopener">https://arxiv.org/abs/1904.09751</a></p>
+          <p>IBM Research. (2023). <em>AI inference explained</em>. IBM Research Blog. <a href="https://research.ibm.com/blog/AI-inference-explained" target="_blank" rel="noopener">https://research.ibm.com/blog/AI-inference-explained</a></p>
+          <p>Ji, Z., et al. (2023). <em>Survey of Hallucination in Natural Language Generation</em>. arXiv. <a href="https://arxiv.org/abs/2309.05922" target="_blank" rel="noopener">https://arxiv.org/abs/2309.05922</a></p>
+          <p>Kaplan, J., et al. (2020). <em>Scaling Laws for Neural Language Models</em>. arXiv. <a href="https://arxiv.org/abs/2001.08361" target="_blank" rel="noopener">https://arxiv.org/abs/2001.08361</a></p>
+          <p>Olah, C., et al. (2018). <em>The Building Blocks of Interpretability</em>. Distill. <a href="https://distill.pub/2018/building-blocks/" target="_blank" rel="noopener">https://distill.pub/2018/building-blocks/</a></p>
+          <p>Rafailov, R., et al. (2023). <em>Direct Preference Optimization: Your Language Model is Secretly a Reward Model</em>. arXiv. <a href="https://arxiv.org/abs/2305.18290" target="_blank" rel="noopener">https://arxiv.org/abs/2305.18290</a></p>
+          <p>Röttger, P., et al. (2023). <em>Red Teaming Language Models with Language Models</em>. arXiv. <a href="https://arxiv.org/abs/2305.19710" target="_blank" rel="noopener">https://arxiv.org/abs/2305.19710</a></p>
+          <p>Srivastava, A., et al. (2023). <em>Beyond the Imitation Game Benchmark (BIG-bench)</em>. arXiv. <a href="https://arxiv.org/abs/2206.04615" target="_blank" rel="noopener">https://arxiv.org/abs/2206.04615</a></p>
+          <p>Zhang, C., et al. (2025). <em>Almost Surely Safe Alignment of LLMs at Inference-Time (InferenceGuard)</em>. arXiv. <a href="https://arxiv.org/abs/2502.01208" target="_blank" rel="noopener">https://arxiv.org/abs/2502.01208</a></p>
+          <p>Zhang, S., et al. (2023). <em>Language Models are Multilingual Chain-of-Thought Reasoners</em>. arXiv. <a href="https://arxiv.org/abs/2305.11793" target="_blank" rel="noopener">https://arxiv.org/abs/2305.11793</a></p>
+          <p>Zou, A., et al. (2023). <em>Universal and Transferable Adversarial Attacks on Aligned Language Models</em>. arXiv. <a href="https://arxiv.org/abs/2307.15043" target="_blank" rel="noopener">https://arxiv.org/abs/2307.15043</a></p>
+        </div>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

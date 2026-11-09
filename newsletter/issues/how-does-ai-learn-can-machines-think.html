@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How Does AI Learn? Can Machines Think? — Oona Singh</title>
+  <meta name="description" content="This one’s a longer read — Part 2 of my AI Series.">
+  <meta name="author" content="Oona Singh">
+  <link rel="canonical" href="https://oonasingh.com/newsletter/issues/how-does-ai-learn-can-machines-think.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How Does AI Learn? Can Machines Think? — Oona Singh">
+  <meta property="og:description" content="This one’s a longer read — Part 2 of my AI Series.">
+  <meta property="og:url" content="https://oonasingh.com/newsletter/issues/how-does-ai-learn-can-machines-think.html">
+  <meta property="og:site_name" content="Oona Singh">
+  <meta property="article:author" content="https://oonasingh.com/">
+  <meta property="article:published_time" content="2025-07-30T00:00:00Z">
+  <meta property="article:modified_time" content="2025-07-30T00:00:00Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How Does AI Learn? Can Machines Think? — Oona Singh">
+  <meta name="twitter:description" content="This one’s a longer read — Part 2 of my AI Series.">
+  <meta name="twitter:site" content="@oona_singh_">
+  <meta name="twitter:creator" content="@oona_singh_">
+  <link rel="stylesheet" href="../../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": "https://oonasingh.com/newsletter/issues/how-does-ai-learn-can-machines-think.html#article",
+    "headline": "How Does AI Learn? Can Machines Think?",
+    "description": "This one’s a longer read — Part 2 of my AI Series.",
+    "articleSection": "Newsletter",
+    "inLanguage": "en-US",
+    "datePublished": "2025-07-30T00:00:00Z",
+    "dateModified": "2025-07-30T00:00:00Z",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://oonasingh.com/newsletter/issues/how-does-ai-learn-can-machines-think.html"
+    },
+    "author": {
+      "@type": "Person",
+      "@id": "https://oonasingh.com/#oona-singh",
+      "name": "Oona Singh",
+      "url": "https://oonasingh.com/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "@id": "https://oonasingh.com/#oona-singh",
+      "name": "Oona Singh"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="site-header">
+      <a class="site-title" href="/">Oona Singh</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/newsletter/">Newsletter</a>
+        <a href="https://oona.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </header>
+    <main>
+      <article class="newsletter-article">
+        <p class="meta"><a href="../">Newsletter archive</a> · <time datetime="2025-07-30">July 30, 2025</time></p>
+        <h1>How Does AI Learn? Can Machines Think?</h1>
+        <p class="dek">This one’s a longer read — Part 2 of my AI Series.</p>
+        <div class="newsletter-body">
+          <p>Hello all.</p>
+          <p>Welcome and welcome back. More on AI this week!</p>
+          <figure><img src="/newsletter/images/how-does-ai-learn-can-machines-think-1.webp" alt="" width="610" height="440.67241379310343" loading="lazy"></figure>
+          <p><em>(Employees of the Month, Zachary Kanin). </em></p>
+          <p>Today, I'm keeping to my word, and we're getting into the weeds with the question: how does AI learn?</p>
+          <p>I'm feeling generous today, and I've brought back the section breakdown for convenience.</p>
+
+          <h4>I. Turing, Lovelace, and Thinking Machines</h4>
+
+          <h4>II. Shifting the Frame: From Thinking to Learning</h4>
+
+          <h4>III. How Do We Actually Make AI</h4>
+
+          <h4>III.i. Code</h4>
+
+          <h4>III.ii. Tokens and Input: Preparing the Data</h4>
+
+          <h4>III.iii. Backpropagation &amp; Gradient Descent</h4>
+
+          <h4>IV. Learning without Knowing</h4>
+
+          <h4>V. The Transformer: Modern AI's Core</h4>
+
+          <h4>VI. Scaling Laws: Why Bigger Works</h4>
+
+          <h4>VII. The Hardware Layer: Where Abstraction Meets Silicon</h4>
+
+          <h4>VIII. Return to the Transformer</h4>
+
+          <h4>IX. The Power of Scale: Kaplan's Scaling Laws (Revisited)</h4>
+
+          <h4>X. The Big Picture: How AI Learns Today</h4>
+
+          <h4>I. Turing, Lovelace, and Thinking Machines</h4>
+          <p>I think it would be helpful for our purposes to trace some of the history around the conceptualisation of machines and AI before we get straight into the topic at hand.</p>
+          <p>Alan Turing (whose other significant contributions to mathematics and cryptography you may be familiar with) wrote his seminal 1950 paper, <em>"Computing Machinery and Intelligence,"</em> not as a technical manual, but as a philosophical goading. He begins by asking, "Can machines think?” but then quickly reframes the question into something far more testable: if a machine behaves indistinguishably from a human, should we not grant it the same cognitive attribution? What becomes important is not whether a machine <em>is</em> thinking, but whether we can meaningfully distinguish its output from our own.</p>
+          <p>Ada Lovelace, writing over a century earlier, offers a counterweight to Turing's optimism. Often (somewhat lazily) referred to as the "first programmer," I find it far more accurate to call her the first theoretical computer scientist. She worked with Babbage's design for the Analytical Engine and made a subtle, yet profound point:</p>
+          <blockquote>
+            <p>"The Analytical Engine has no pretensions to originate anything. It can do whatever we know how to order it to perform."</p>
+          </blockquote>
+          <p>(Lovelace, as quoted in Turing, 1950).</p>
+          <p>Turing and Lovelace offer two interesting perspectives on machine intelligence. One imagines machines approaching human cognition through mimicry, and the other insists that computation is bounded by the instructions we give it.</p>
+          <p>Today, the tension between the two perspectives feels more relevant than ever. As AI systems become increasingly fluent in human language and increasingly capable of generating what appears to be thought, we are compelled to re-examine not only "can machines think?" but also "what do we even mean by 'think'?"</p>
+          <p>And of course, by extension, we get closer to the crux of today’s agenda by asking, what do we mean by 'learn<strong>'</strong>?</p>
+          <p>If we mean by "thinking" the conscious reflection of subjective interiority, then no, machines do not think. Not in any meaningful phenomenological sense, at least. Searle's "Chinese Room" argument remains relevant here: symbol manipulation, even when done convincingly, is not equivalent to understanding.</p>
+          <figure><img src="/newsletter/images/how-does-ai-learn-can-machines-think-2.jpeg" alt="" width="800" height="803" loading="lazy"></figure>
+          <p><em>(Cartoon by Paul Noth, The New Yorker, 2017).</em></p>
+
+          <h4>II. Shifting the Frame: From Thinking to Learning</h4>
+          <p>We can, however, conceptualise learning differently. Machines, particularly the subset of machines that we often refer to as machine learning models, do learn. This learning can be measured in a few functional and objective ways. And perhaps, top of mind for many people, is the increasingly deceptive way these machines are mimicking thought across different AI platforms (like the thinking function on ChatGPT). Some of this mimicry is so eerie that it is tempting to collapse the distinction altogether. Yet, I would insist that we do not.</p>
+          <p>Jinsook Kim wrote a fascinating paper on this topic, "Can Machines Learn the True Probabilities?" (2024). Kim's paper offers a very compelling inquiry and framing. Kim challenges assumptions that AI systems (like our favorite generative AI models) are optimized for surface-level pattern recognition. Kim posits whether these systems can converge on something like objective probabilistic reasoning, rather than statistical mimicry.</p>
+          <p>If that sounds overly complex, more simply put, Kim asks: Is the model learning the true structure of the world, or is it just discerning what's frequent and echoing it back? Can models distinguish the probable from the popular? This distinction does matter. And it continues to matter more, as we deploy AI across domains that demand inference, judgment, and a level of epistemic sensitivity (medicine, law, and policy).</p>
+          <p>As a short note, it would be helpful to get some definitional clarity on what machine learning is. Tom Mitchell offers this:</p>
+          <blockquote>
+            <p>"A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E."</p>
+          </blockquote>
+          <p>(Mitchell, T. (1997). <em>Machine Learning</em>. McGraw Hill).</p>
+          <p>This is the definition adopted, whether explicitly or implicitly, by most modern fields. It is apparent why, as it is precise and falsifiable. So, by this logic, machines do learn. However, we cannot romanticize this learning - it is very much mathematical, not mindful, and it is based on probabilities (as Kim would likely say).</p>
+
+          <h4>III. How Do We Actually Make AI</h4>
+          <p>So, again, how does AI learn?</p>
+          <p>You may be familiar with the results of a quick Google search of "How does AI learn," which often mention AI learning or being trained on thousands of datasets, and so on. But what does that mean? And yet again, I apologise; we find ourselves in a Socratic loop, because to answer the question of how AI learns, we need to look at how AI is built. However, I promise that this will be rewarding in our pursuit of understanding how AI learns.</p>
+          <p>It's helpful to understand how we build these systems, from the first line of code to the last training run. Through this knowledge, it becomes apparent how the machine internalizes patterns, adjusts its beliefs (at the risk of bastardizing the word), and learns. And the question of how we make it leads us quite naturally into how AI learns.</p>
+
+          <h4>III.i. Code</h4>
+          <p>So the way we first build our AI models starts with code. This code is often written in Python. Not because Python is the fastest choice (it is not), nor is it the most elegant (different developers have varying views on this), but rather it is because it is readable, flexible, and incredibly well-supported.</p>
+          <p>At the most basic level, a model is a function. In the same way you learned in pre-algebra, it takes an input and returns an output. However, in deep learning, this function is not fixed; it is parameterized. That is, it contains internal variables or weights that can change. These weights are what the model learns. These weights are the bare bones for what will one day become a language model.</p>
+
+          <h4>III.ii. Tokens and Input: Preparing the Data</h4>
+          <p>To create an AI model, then, is to declare our structure, specify the shape of its parameters, and subject it to data; massive amounts of data. However, this data cannot be just thrown into our AI model meatgrinder without being first prepared. It needs to be chopped into smaller parts (this is where we get back to our tokenizer). If you've been reading my newsletter for a while, you'll recall the tokenizer; if not, I'll explain it anyway.</p>
+          <p>A tokenizer is essential to this whole process, as it converts text into subword units, not words or characters, but numbers. These little pieces or fragments, in accumulated amounts, have an estimable linguistic meaning. We take the word "thinking," which might be tokenized as [312, 78], and the phrase "I wonder," which would be [40, 1523]. These are not arbitrary numbers; they are part of a learned, compressed vocabulary or a statistical encoding of human language. Once they have been properly tokenized, the input is ready. With these inputs, our model begins to learn (how exciting)! </p>
+
+          <h4>III.iii. Backpropagation and Gradient Descent</h4>
+          <p>So, how do these tokens get used in the learning process?</p>
+          <p>The model receives a sentence fragment, or a string of tokens, and is asked to infer what comes next. It will attempt a guess. This guess is graded against the correct answer (the actual next token in the dataset).</p>
+          <p>The distance between the guess and the truth is calculated using what's referred to as a loss function, which is a mathematical expression that quantifies how far a model’s predicted output is from the actual target, guiding the model during training by penalizing larger errors more heavily and helping it adjust its internal parameters to improve future predictions.</p>
+          <p>This difference, or the grading of this inaccuracy, is the signal that drives the system. Through a process called backpropagation, the model traces the error through its layers, calculating how each weight led to the eventual mistake. <em>(Backpropagation, in simple terms, is a method for adjusting a neural network’s internal parameters based on the errors in its predictions. Essentially, it helps the AI model refine its predictions by identifying how far off each answer was and adjusting the weights accordingly to improve future predictions.)</em></p>
+          <p>Gradients (which are partial derivatives) are computed for each parameter. These gradients are then used to adjust the weights slightly, thereby reducing the model's inaccuracy. This process of learning is called gradient descent, which is fitting because it involves a descent down the mountain of ignorance toward local minima of statistical coherence. <em>(Gradient descent is a process by which the AI model adjusts to find its ‘lowest error.’ If the error is not obvious, it takes steps ‘downward’ or in ‘descent’ to ensure the direction of adjustment is correct, and eventually, the error is minimized).</em></p>
+          <figure><img src="/newsletter/images/how-does-ai-learn-can-machines-think-3.png" alt="" width="1400" height="637" loading="lazy"></figure>
+          <p><em>(Backpropagation in a feedforward neural network: the error between predicted and actual output is used to compute gradients, which are sent backward to update weights. Diagram taken from LM PO (<a href="https://medium.com/@lmpo/backpropagation-the-backbone-of-neural-network-training-64946d6c3ae5" target="_blank" rel="noopener">2024</a>).)</em></p>
+          <p>This process occurs millions, even billions, of times. The same operation, forward pass, loss, backward pass, weight update, is repeated on massive datasets scraped from books, websites, code repositories, and academic papers. Each iteration improves the model until it begins to resemble what we would recognize as an AI model. Interestingly, the model operates without any awareness of its actions.</p>
+
+          <h4>IV. Learning Without Knowing</h4>
+          <p>Again, while these models do an excellent job of feigning sentience, they have no concept of "cat," "mat," or "love."</p>
+          <p>These models identify patterns in numbers and discover correlations in high-dimensional spaces, which are stored and indexed in vector databases, specialized systems designed to retrieve semantically similar embeddings efficiently. This enables the model to augment its responses with relevant contextual or external knowledge.</p>
+          <p>It is stored in lattices of parameters, a probabilistic map of how language would behave. And that level of extrapolation is sufficient for prediction, simulation, and generating language, allowing us to perceive these models as animated and alive.</p>
+          <p>The irony here should not be lost on us. We build systems out of tools we fully understand, such as linear algebra, calculus, and optimization; yet, once they are scaled, these models exhibit behaviors that we cannot fully understand. We can determine where their weights are, but we cannot precisely identify what is encoded within them.</p>
+          <p>The construction of AI resembles this: a vessel is shaped and refined through exposure, feedback, and continuous adjustment into something that performs with consistent fluency, yet lacks genuine cognizance.</p>
+          <p>This is what AI learning looks like. It assesses across possibilities and aligns to reflect patterns within the data it has been given.</p>
+          <p>So, we get machines that don’t know anything, yet perform knowledge with a jarring fluency.</p>
+
+          <h4>V. The Transformer: Modern AI's Core</h4>
+          <figure><img src="/newsletter/images/how-does-ai-learn-can-machines-think-4.png" alt="" width="1402" height="1968" loading="lazy"></figure>
+          <p><em>(The Transformer model architecture introduced by Vaswani et al. (2017), showing multi-head attention, feedforward layers, and residual connections. This parallelized sequence model replaced recurrent architectures in most modern large language models.)</em></p>
+          <p>Having asked how we make AI and traced how it learns from structured exposure to tokenized data, we now arrive at the central chamber of the machine: the Transformer. The Transformer is its architecture, or the body in which such learning occurs.</p>
+          <p>In 2017, a group of researchers at Google Brain — Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, and Polosukhin — published a paper with a deceptively modest title: <em>Attention Is All You Need</em>. That paper, now foundational in machine learning, introduced a new paradigm for sequence modeling: self-attention.</p>
+          <p>What the authors proposed was not a single model, but a new way of thinking about how models relate to inputs over time. Rather than processing tokens in order, as a human reader might, the Transformer attends to all tokens simultaneously, calculating the relevance of each word in a sequence to every other word in the sequence. In effect, the model does not read from left to right, but rather all at once, weighing, comparing, and cross-referencing in parallel.</p>
+          <p>Thus emerges a depth: the early layers capture part-of-speech patterns, the middle ones may learn syntax, and the uppermost layers can model semantic relationships, discourse structure, and even reasoning patterns.</p>
+
+          <h4>VI. Scaling Laws: Why Bigger Works</h4>
+          <p>But the story does not end with architecture.</p>
+          <p>As we scale these models, adding more layers, more neurons, more data, the natural assumption is that we'll eventually encounter diminishing returns. Surprisingly, that assumption, at least for now, does not hold.</p>
+          <p>Because attention is differentiable, parallelizable, and extensible, it allows the model to build meaning relationally rather than sequentially. By stacking attention layers, the Transformer learns hierarchies of association — each layer abstracting patterns built by the one beneath.</p>
+          <p>Jared Kaplan and colleagues at OpenAI and Johns Hopkins performed experiments in <em>Scaling Laws for Neural Language Models,</em> spanning seven orders of magnitude in model size, data, and compute, yielding findings that are both sobering and startling.</p>
+          <p>To quote the authors:</p>
+          <blockquote>
+            <p>"Larger models are significantly more sample-efficient, such that optimally compute-efficient training involves training very large models on a relatively modest amount of data and stopping significantly before convergence."</p>
+          </blockquote>
+          <p>(Kaplan et al., 2020).</p>
+          <figure><img src="/newsletter/images/how-does-ai-learn-can-machines-think-5.png" alt="" width="748" height="523" loading="lazy"></figure>
+          <p><em>(Generalization error vs. dataset size: In the power-law regime, error decreases smoothly with more data, model size, or compute. Based on Hestness et al. (2017).)</em></p>
+          <p>The central insight is that model performance improves predictably and smoothly as a power-law function of scale, across parameters, data, and compute. There are no sudden leaps, no step changes, just steady progress. The loss curve keeps descending as resources increase — not because the model "learns" new concepts, but because it becomes better at capturing the statistical structure of language.</p>
+          <p>This defies intuition. One might think we need to train on all of the internet. But no. We build larger models, train them less thoroughly, and use less data, yet they generalize better. To be clear, this is not an expression of increased sentience. Instead, they are becoming more statistically expressive.</p>
+          <p>The Transformer provides us with the scaffolding, attention mechanisms, feedforward networks, positional encodings, and layer norms. But the scaling laws provide the trajectory. They explain why GPT-3 and GPT-4 outperform their predecessors, not because of radically different algorithms, but because scale, when harnessed properly, is sufficient.</p>
+          <p>That being said, scale is not a magic solution. It does not create comprehension, consciousness, or intent. What it creates is an ever-expanding ability to map inputs to outputs, with increasing nuance and internal coherence. What emerges is not understanding in a human sense, but fluency, plausibility, and inference.</p>
+
+          <h4>VII. The Hardware Layer: Where Abstraction Meets Silicon</h4>
+          <p>If we were to make AI — in the full, modern sense — then we must look beyond software architecture alone. Beneath every model sits a bedrock of hardware: the computational layer upon which everything is built. </p>
+          <p>Artificial neural networks, at their heart, are systems of matrix multiplication. Vast arrays of numbers are transformed, layer by layer, through affine operations and non-linear activations. These operations are numerical. And they are not executed one-by-one in some serial choreography, but all at once — in parallel. This is where general-purpose CPUs, once the workhorses of computing, fall behind. They are optimized for sequential logic, not high-throughput numerical operations.</p>
+          <p>The rise of GPU acceleration and, more recently, TPUs,  marks the infrastructural shift that enabled the deep learning renaissance. Initially introduced for rendering graphics, GPUs (Graphics Processing Units) have evolved into powerful engines for tensor computation, thanks to their massively parallel architectures (you can read my article on chip architecture and NVIDIA <a href="https://oona.substack.com/p/i-love-chips" target="_blank" rel="noopener">here</a> for more clarity). Modern GPUs like the NVIDIA A100 or H100 are not merely faster than CPUs; they are orders of magnitude more efficient at performing the matrix operations that define every layer of a deep learning model. TPUs (Tensor Processing Units), developed by Google and used in models like PaLM and Gemini, go further still by being custom hardware designed specifically for operations such as matrix multiplication (matmul), softmax, and ReLU — the atomic steps of neural networks.</p>
+          <p>When you see a line of Python code invoking a model, you are orchestrating a pipeline that offloads vast computations to CUDA (for NVIDIA GPUs), cuDNN (for deep learning ops), or XLA (for TPUs). These operations take place not on the CPU that runs your code, but on dedicated silicon that has been engineered to turn tensor arithmetic into a real-time, physically grounded operation.</p>
+
+          <h4>VIII. Return to the Transformer</h4>
+          <p>Now that we’ve explored the hardware, we can understand the Transformer even better, not just as a model architecture, but as the first design to align with the deep-learning compute environment fully. </p>
+          <p>When Vaswani et al. proposed <em>"Attention is All You Need"</em> (2017), the field was dominated by recurrent neural networks (RNNs) and their derivatives — LSTMs, GRUs — models that processed language one token at a time, carrying a hidden state forward. While these models had their successes, they were computationally slow. They suffered from what's called the vanishing gradient problem. As the model backpropagates errors through many layers (or time steps), the gradient signals used to update early weights become extremely small. This makes it hard for the model to learn long-range dependencies, since early inputs have little influence on the final prediction.</p>
+          <p>Vaswani and colleagues upended this paradigm by discarding recurrence entirely. Instead, they introduced a mechanism whereby each token in an input sequence could attend to every other token, in parallel. This mechanism, known as self-attention, allowed models to learn relationships across any distance without relying on serial memory. And, crucially, because it could be computed in parallel over all tokens, it was ideally suited to run on GPUs and TPUs.</p>
+          <p>Their paper does not mince words in its intent: </p>
+          <blockquote>
+            <p>The Transformer, a model architecture eschewing recurrence and instead relying entirely on an attention mechanism to draw global dependencies between input and output.</p>
+          </blockquote>
+          <p>(Vaswani et al., 2017, p. 1)</p>
+          <p>This was not merely an engineering tweak. It was a paradigm shift. Suddenly, models could be deeper, faster, and more generalizabl<strong>e</strong>. The Transformer scaled, not just in depth, but in domain. Its architecture was quickly adopted for language (GPT, BERT), vision (ViT), code (Codex), and even biology (AlphaFold). Attention had not only replaced recurrence — it had redrawn the map of what was architecturally possible.</p>
+
+          <h4>IX. The Power of Scale: Kaplan's Scaling Laws (Revisited)</h4>
+          <p>But as architectures evolved, another pattern emerged; one less theoretical, and more empirical.</p>
+          <p>In 2020, Kaplan et al<strong>.</strong> published <em>Scaling Laws for Neural Language Models</em>, a paper that did not introduce a new model or mechanism, but rather something else entirely: an observation. Over a wide range of model sizes, data sizes, and compute budgets, the performance of language models followed a power-law relationship. That is, test loss decreased predictably as a function of scale — in parameters, in tokens, and floating-point operations.</p>
+          <p>As they write:</p>
+          <blockquote>
+            <p>"We find that, for large-scale language models, performance improves smoothly and predictably as model size, dataset size, and the amount of computation used for training are increased."</p>
+          </blockquote>
+          <p>(Kaplan et al., 2020)</p>
+          <p>Perhaps more surprising was the implication: larger models trained for less time on smaller datasets often outperformed smaller models trained for longer periods. This reverses traditional intuitions about overfitting. What Kaplan's team observed was that larger models are more sample-efficient — they generalize better, not because they are smarter, but because their internal parameter space is vast enough to express more subtle relationships in the data.</p>
+          <p>This discovery reshaped the economics of AI research. No longer was it sufficient to optimize architecture or training heuristics. Instead, organizations like OpenAI, Google, Anthropic, and Meta began investing in <strong>scale itself</strong>, trusting that with enough parameters, data, and compute, the models would improve. And they did.</p>
+          <p>But let us not mistake precision for profundity. As Kaplan et al. note, "other architectural details such as network width or depth have minimal effects within a wide range" (p. 2). What matters, then, is not cleverness; rather, it is capacity.</p>
+
+          <h4>X. The Big Picture: How AI Learns Today</h4>
+          <p>Thus emerges the complete picture of how AI learns in the modern age:</p>
+          <ul>
+            <li>A Transformer architecture defined in Python</li>
+            <li>Trained on tokenized text via backpropagation</li>
+            <li>Executed on GPU/TPU hardware through highly optimized tensor libraries</li>
+            <li>Scaled according to empirically derived laws of loss minimization</li>
+          </ul>
+          <p>So, what is the TLDR for how AI learns?</p>
+          <p>AI learns through structure, data, gradient descent, and scale.</p>
+          <p><strong>Next Time:</strong></p>
+          <p>We will examine what happens after training: how inference works, how models are aligned with human values, and how they are evaluated for truth, relevance, and safety.</p>
+          <p>That’s all, folks! </p>
+          <p>Thank you for reading. Until next time.</p>
+          <p>Bye.</p>
+          <p><strong>Works Cited/Further Reading</strong></p>
+          <p>Bishop, C. M. 2006. <em>Pattern Recognition and Machine Learning</em>. Springer.</p>
+          <p>Brynjolfsson, E., T. Mitchell, and D. Rock. 2018. “What Can Machines Learn and What Does It Mean for Occupations and the Economy?” <em>AEA Papers and Proceedings</em> 108: 43–47. <a href="https://doi.org/10.1257/pandp.20181019" target="_blank" rel="noopener">https://doi.org/10.1257/pandp.20181019</a>.</p>
+          <p>Chollet, F. 2019. “The Measure of Intelligence.” <em>arXiv preprint</em> arXiv:1911.01547. <a href="https://arxiv.org/abs/1911.01547" target="_blank" rel="noopener">https://arxiv.org/abs/1911.01547</a>.</p>
+          <p>Dennett, D. C. 1991. <em>Consciousness Explained</em>. Little, Brown.</p>
+          <p>Goodfellow, I., Y. Bengio, and A. Courville. 2016. <em>Deep Learning</em>. MIT Press. https://www.deeplearningbook.org.</p>
+          <p>Jouppi, N. P., C. Young, N. Patil, D. Patterson, G. Agrawal, R. Bajwa, et al. 2017. “In-Datacenter Performance Analysis of a Tensor Processing Unit.” <em>Proceedings of the 44th Annual International Symposium on Computer Architecture</em> (ISCA). <a href="https://doi.org/10.1145/3079856.3080246" target="_blank" rel="noopener">https://doi.org/10.1145/3079856.3080246</a>.</p>
+          <p>Kaplan, J., S. McCandlish, T. Henighan, T. B. Brown, B. Chess, R. Child, S. Gray, A. Radford, J. Wu, and D. Amodei. 2020. “Scaling Laws for Neural Language Models.” <em>arXiv preprint</em> arXiv:2001.08361. <a href="https://arxiv.org/abs/2001.08361" target="_blank" rel="noopener">https://arxiv.org/abs/2001.08361</a>.</p>
+          <p>Kim, J. 2024. “Can Machines Learn the True Probabilities?” <em>Journal of Artificial Reasoning and Computation</em>, July 2024. </p>
+          <p>Lovelace, A. (as quoted in Turing, A. M. 1950). <em>Computing Machinery and Intelligence</em>. Mind 59: 433–460. <a href="https://www.cs.ox.ac.uk/activities/ieg/e-library/sources/t_article.pdf" target="_blank" rel="noopener">https://www.cs.ox.ac.uk/activities/ieg/e-library/sources/t_article.pdf</a>.</p>
+          <p>Mitchell, T. M. 1997. <em>Machine Learning</em>. McGraw Hill Education.</p>
+          <p>Newell, A., and H. A. Simon. 1976. “Computer Science as Empirical Inquiry: Symbols and Search.” <em>Communications of the ACM</em> 19 (3): 113–126. <a href="https://doi.org/10.1145/360018.360022" target="_blank" rel="noopener">https://doi.org/10.1145/360018.360022</a>.</p>
+          <p>Olah, C. 2018. “The Building Blocks of Interpretability.” <em>Distill</em>. <a href="https://distill.pub/2018/building-blocks/" target="_blank" rel="noopener">https://distill.pub/2018/building-blocks/</a>.</p>
+          <p>Raina, R., A. Madhavan, and A. Y. Ng. 2009. “Large-scale Deep Unsupervised Learning Using Graphics Processors.” In <em>Proceedings of the 26th Annual International Conference on Machine Learning</em> (ICML).</p>
+          <p>Searle, J. R. 1980. “Minds, Brains, and Programs.” <em>Behavioral and Brain Sciences</em> 3 (3): 417–457. <a href="https://doi.org/10.1017/S0140525X00005756" target="_blank" rel="noopener">https://doi.org/10.1017/S0140525X00005756</a>.</p>
+          <p>Shannon, C. E. 1948. “A Mathematical Theory of Communication.” <em>Bell System Technical Journal</em> 27 (3): 379–423. <a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x" target="_blank" rel="noopener">https://doi.org/10.1002/j.1538-7305.1948.tb01338.x</a>.</p>
+          <p>Turing, A. M. 1950. <em>Computing Machinery and Intelligence</em>. Mind 59: 433–460. <a href="https://www.cs.ox.ac.uk/activities/ieg/e-library/sources/t_article.pdf" target="_blank" rel="noopener">https://www.cs.ox.ac.uk/activities/ieg/e-library/sources/t_article.pdf</a>.</p>
+          <p>Vaswani, A., N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, Ł. Kaiser, and I. Polosukhin. 2017. “Attention Is All You Need.” <em>Advances in Neural Information Processing Systems</em>, 30: 5998–6008. <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">https://arxiv.org/abs/1706.03762</a>.</p>
+          <p>Wiener, N. 1948. <em>Cybernetics: Or Control and Communication in the Animal and the Machine</em>. MIT Press.</p>
+        </div>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

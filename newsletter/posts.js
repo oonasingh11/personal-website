@@ -28,6 +28,72 @@ export const posts = [
     title: 'How Card Payments Work',
     date: '2025-10-31',
     summary: 'A guided tour through the actors, fees, and protocols that let every card swipe go through.'
+  },
+  {
+    slug: "how-ai-works-after-training",
+    title: "How AI Works After Training",
+    date: "2025-08-23",
+    summary: "Part 3 of My AI Series - inference, alignment, evaluation (including some visual aids)."
+  },
+  {
+    slug: "how-does-ai-learn-can-machines-think",
+    title: "How Does AI Learn? Can Machines Think?",
+    date: "2025-07-30",
+    summary: "This one’s a longer read — Part 2 of my AI Series."
+  },
+  {
+    slug: "three-types-of-ai-that-might-steal-your-job",
+    title: "Three Types of AI That Might Steal Your Job (Or Just Help You Pick a Restaurant)",
+    date: "2025-05-13",
+    summary: "trying to make these newsletters read less like Greek + the em dash controversy."
+  },
+  {
+    slug: "how-do-computers-really-work",
+    title: "How do computers really work? Compilers? Interpreters?",
+    date: "2025-01-23",
+    summary: "are computers just magic."
+  },
+  {
+    slug: "scheming-models-and-math",
+    title: "Scheming Models and Math.",
+    date: "2025-01-02",
+    summary: "(not the kind you think) Just some thoughts on developments in AI by a software engineer - distilled to be less technical."
+  },
+  {
+    slug: "drone-simulator-update",
+    title: "Drone Simulator Update: The Flying Red Cube Takes Off!",
+    date: "2024-12-17",
+    summary: "I'm just a drone! I only fly away (hopefully)."
+  },
+  {
+    slug: "ai-capex",
+    title: "AI CapEx",
+    date: "2024-11-28",
+    summary: "in short - are we spending too much money on AI?"
+  },
+  {
+    slug: "oons-drone-3",
+    title: "Oons Drone 3",
+    date: "2024-10-25",
+    summary: "a short update."
+  },
+  {
+    slug: "oons-drone-2",
+    title: "Oons Drone 2",
+    date: "2024-09-12",
+    summary: "continuation of my drone simulator/game series."
+  },
+  {
+    slug: "oons-drone",
+    title: "Oons Drone",
+    date: "2024-08-09",
+    summary: "I am actually building a video game!"
+  },
+  {
+    slug: "the-age-of-ai-anxiety",
+    title: "The Age of AI Anxiety",
+    date: "2024-07-18",
+    summary: "Another non-technical piece and my thoughts (this is quite long, so save it for when you REALLY have time to read). And no, I'm not encouraging becoming a Luddite."
   }
 ];
 

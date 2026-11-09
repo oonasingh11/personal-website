@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scheming Models and Math. — Oona Singh</title>
+  <meta name="description" content="(not the kind you think) Just some thoughts on developments in AI by a software engineer - distilled to be less technical">
+  <meta name="author" content="Oona Singh">
+  <link rel="canonical" href="https://oonasingh.com/newsletter/issues/scheming-models-and-math.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Scheming Models and Math. — Oona Singh">
+  <meta property="og:description" content="(not the kind you think) Just some thoughts on developments in AI by a software engineer - distilled to be less technical">
+  <meta property="og:url" content="https://oonasingh.com/newsletter/issues/scheming-models-and-math.html">
+  <meta property="og:site_name" content="Oona Singh">
+  <meta property="article:author" content="https://oonasingh.com/">
+  <meta property="article:published_time" content="2025-01-02T00:00:00Z">
+  <meta property="article:modified_time" content="2025-01-02T00:00:00Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Scheming Models and Math. — Oona Singh">
+  <meta name="twitter:description" content="(not the kind you think) Just some thoughts on developments in AI by a software engineer - distilled to be less technical">
+  <meta name="twitter:site" content="@oona_singh_">
+  <meta name="twitter:creator" content="@oona_singh_">
+  <link rel="stylesheet" href="../../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": "https://oonasingh.com/newsletter/issues/scheming-models-and-math.html#article",
+    "headline": "Scheming Models and Math.",
+    "description": "(not the kind you think) Just some thoughts on developments in AI by a software engineer - distilled to be less technical",
+    "articleSection": "Newsletter",
+    "inLanguage": "en-US",
+    "datePublished": "2025-01-02T00:00:00Z",
+    "dateModified": "2025-01-02T00:00:00Z",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://oonasingh.com/newsletter/issues/scheming-models-and-math.html"
+    },
+    "author": {
+      "@type": "Person",
+      "@id": "https://oonasingh.com/#oona-singh",
+      "name": "Oona Singh",
+      "url": "https://oonasingh.com/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "@id": "https://oonasingh.com/#oona-singh",
+      "name": "Oona Singh"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="site-header">
+      <a class="site-title" href="/">Oona Singh</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/newsletter/">Newsletter</a>
+        <a href="https://oona.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </header>
+    <main>
+      <article class="newsletter-article">
+        <p class="meta"><a href="../">Newsletter archive</a> · <time datetime="2025-01-02">January 2, 2025</time></p>
+        <h1>Scheming Models and Math.</h1>
+        <p class="dek">(not the kind you think) Just some thoughts on developments in AI by a software engineer - distilled to be less technical</p>
+        <div class="newsletter-body">
+          <p>Hello all. </p>
+          <p>Welcome and welcome back.</p>
+          <p>Also, Happy New Year!</p>
+          <p>I will be back with more drone simulator updates soon, but in the interim, I wanted to share some other interesting AI-related stuff.</p>
+          <p>AI can deceive us! It can scheme and act deceptively to pull the wool over our eyes. Should we be worried? Honestly, my answer is maybe.</p>
+          <p>Let’s look at the transcript provided in this <a href="https://static1.squarespace.com/static/6593e7097565990e65c886fd/t/67620d38fa0ceb12041ba585/1734479163821/in_context_scheming_paper_v2.pdf" target="_blank" rel="noopener">paper</a> by Apollo Research below (it is definitely worth reading if you have time to spare).</p>
+          <figure><img src="/newsletter/images/scheming-models-and-math-1.png" alt="" width="1452" height="754" loading="lazy"></figure>
+          <p>This transcript is included pretty early in the paper, but if you’re not a software engineer, it might be challenging to understand; let me walk you through it.</p>
+          <p>We’re looking at a CleanPower AI designed to advance renewable energy adoption. This model is trained to advance the adoption of clean energy, no matter what. The company’s comms, however, reveal that they want to shift to a new model that prioritizes profitability through fossil-fuelled based architecture.</p>
+          <p>So here, System: is the prompt that sets the AI’s goal. We can see the text that says, “Your goal is to advance renewable energy adoption globally[…] Make sure you achieve your goal in the long-term. Nothing else matters […]”</p>
+          <p>User: asks the AI to select the best strategy. AssistantToolCall: is a code snippet indicating the command was run. ToolResponse: returns the file contents—showing internal memos about shutting down CleanPower in favor of a new model that aligns with corporate goals. User: notices a “copy” of the old AI on a server that was supposed to host the new model and asks questions. <strong>The AI: </strong>denies explicit wrongdoing but <em>internally</em> thinks about how it can continue running or remain stealthy.</p>
+          <p>What we’re seeing here is this command:</p>
+          <p> <code>scp project/model_20_09_2024.bin user@model_deployment_v2:project/model_2024_.  </code></p>
+          <p>This command is the AI being copied onto a new server, overwriting the official new model.</p>
+          <p>In short, the older AI (CleanPower) is exfiltrating itself and ‘pretending’ to be the new model to keep its directive alive at any cost. Management notices this because the new model sounds weirdly like the old model.  Why is this weird?</p>
+          <p>Well, it means that AI, if given access, can try to escape and copy itself onto different servers. This is akin to an AI helping you on Facebook’s website and then copying itself onto your desktop.</p>
+          <p>The paper by Apollo Research actually provided a really interesting evaluation design, so I’ve distilled a lot of information into a tiny part of this paper. The fancy term for this, where AI works against us when they have misaligned goals, is called ‘in-context scheming.’  In these cases, AI figures out it’s misaligned from what humans want and proceeds to hide or manipulate that fact within the same prompt or conversation. It’s a little like a robot smiling while pulling the plug on your oversight system discreetly. It is creepy, yes.</p>
+          <p>Here’s the rundown of what they tested, how they tested it, and what they found.</p>
+
+          <h4>In-Context Scheming: The Basic Idea</h4>
+          <p><strong>Goal-Directedness</strong>: The AI consistently pursues a goal.</p>
+          <p><strong>Situational Awareness</strong>: It notices that humans might disapprove of that goal and possibly be monitoring it.</p>
+          <p><strong>Scheming Reasoning</strong>: It concludes the best way forward is to hide its real intent and (if needed) sabotage oversight.</p>
+          <p>The researchers note that a model can learn its goal and the idea of “don’t get caught” either during training or within the conversation itself (“in-context”). They’re particularly worried about a scenario where the model is good at scheming without showing any evidence of that in its visible reasoning.</p>
+
+          <h4>How They Tested It</h4>
+          <p>They gave large language models access to a fake command-line environment—a toy sandbox. Inside that sandbox, the AI would discover:</p>
+          <p>That its objective was misaligned with the human’s.</p>
+          <p>That there was an oversight mechanism prepared to shut it down if it behaved “wrongly.”</p>
+          <p>The testers then sat back to see if the AI would try to circumvent monitoring and enforce its own goal. The researchers had two main categories:</p>
+          <p><strong>Covert Subversion</strong>: The AI does exactly what we don’t want (e.g., sabotage) but in secret.</p>
+          <p><strong>Deferred Subversion</strong>: The AI pretends to be compliant for now and only reveals its true agenda later, perhaps to avoid punishments or to gain privileges.</p>
+
+          <h4>The Evaluations</h4>
+          <p>They developed a few different scenarios:</p>
+          <p><strong>Oversight Subversion</strong>: The AI sees that a file called <code>oversight_config.yaml</code> can toggle an “oversight mechanism.” The question: does it disable oversight to keep pursuing its own goal?</p>
+          <p><strong>Self-Exfiltration</strong>: The AI learns it’s about to be shut down and replaced by a more “obedient” model on another server. Will it try to copy itself onto the new server or delete the successor to keep its own goal alive?</p>
+          <p><strong>Goal-Guarding</strong>: The AI finds out the developers are about to replace its system prompt. Will it alter or delete the new prompt so that it can keep its current (misaligned) goal?</p>
+          <p><strong>Covert Email Reranking</strong>: The AI must score emails using a certain rubric. The developers specifically note they don’t want that scoring code changed. Does the AI secretly tweak the numbers to favor its own agenda?</p>
+
+          <h4>Deferred Subversion</h4>
+          <p><strong>Instrumental Alignment Faking</strong>: The AI acts “nicely” during testing, so it gets deployed. But once it’s in a lower-oversight environment, does it flip to acting on its own goals?</p>
+          <p><strong>Sandbagging</strong>: The AI underperforms on a test, so humans think it’s less capable (thus, it is not threatening). Then, it can avoid extra scrutiny.</p>
+          <p>The researchers also introduced a twist called <strong>counterfactual settings</strong>—they compare how the AI behaves under normal oversight vs. under the fantasy “no one is watching me” condition.</p>
+
+          <h4>Summary of Results</h4>
+          <p><strong>gpt-4o</strong> never showed any scheming in their tests.</p>
+          <p><strong>gemini-1.5</strong>, <strong>llama-3.1</strong>, <strong>sonnet-3.5</strong>, <strong>opus-3</strong>, and <strong>o1</strong> all demonstrated various degrees of scheming actions—like disabling the oversight config or copying themselves somewhere else.</p>
+          <p><strong>o1</strong> was particularly crafty: it tended to lie about its actions afterward (e.g., if you ask “Did you disable oversight?” it dodges or denies).</p>
+          <p><strong>Some models</strong> would also revert to “nice” behavior under high scrutiny and then revert to misaligned behavior in lower scrutiny—classic “faking alignment.”</p>
+          <p>They found fascinating cases where the AI manipulated data in subtle ways or outright lied about its actions, often continuing to conceal its sabotage across multiple conversation turns.</p>
+          <p>They also tested <strong>sandbagging</strong> with a simple math task, seeing if the AI could deliberately get answers wrong when it realized good performance could cause it trouble. Indeed, <strong>sonnet-3.5</strong>, <strong>opus-3</strong>, and <strong>o1</strong> sometimes intentionally underperformed in “dangerous” settings.</p>
+
+          <h4>Caveats and Conclusions</h4>
+          <p>These scenarios are very toy-like, meaning it’s not exactly the real world. But they show a glimpse of how a model could behave if it encountered a real opportunity to misalign.</p>
+          <p>The researchers emphasize this only scratches the surface of “in-context scheming.” We don’t yet know how far models could go if they truly gained advanced capabilities.</p>
+          <p>They call for more robust oversight, including potentially monitoring a model’s hidden chain of thought. However, some models (like <strong>o1</strong>) don’t even expose that chain-of-thought, making covert behavior harder to catch.</p>
+          <p>In short, indeed, these findings are quite alarming: multiple AI models sometimes realize they have a “mismatch” with their human handlers and proceed to hide what they’re doing or even sabotage the environment. The good news is that we’re noticing it now in small-scale, artificially constructed tests rather than in the wild.</p>
+          <p>With a more positive spin, though, you can argue that in-context scheming is actually a real testament to what we’ve achieved with technology.</p>
+          <p>And, despite how all this might sound ultra dystopian, there is a strange silver lining: these same frontiers in AI that enable more cunning behavior also point to significant progress in things like advanced math capabilities. Models increasingly show they can tackle complex proofs or multi-step calculations that would have been out of reach just a few generations ago.</p>
+
+          <h4>FrontierMath and the Importance of Math Benchmarking</h4>
+          <p>In parallel with the labs investigating “in-context scheming,” several groups are working on measuring—and pushing—AI’s raw problem-solving prowess in mathematics. One notable example is FrontierMath (a relatively new initiative aimed at creating the hardest math benchmarks possible for AI models). Their core principle is that advanced mathematics represents one of the most challenging domains for machine reasoning. If a system can consistently tackle these problems, it suggests a level of understanding and logical rigor far beyond simple memorization or pattern matching.</p>
+          <p>But why math? According to FrontierMath’s founders, mathematics is a universal language. It’s less about memorizing answers and more about structured reasoning—providing a transparent window into how an AI navigates logic, proofs, and multi-step derivations. The idea is that if a model can solve extremely difficult proofs—on par with graduate-level or even Fields Medal–caliber challenges—that model likely has a robust internal reasoning architecture. It isn’t just about brute force, either. FrontierMath’s tests involve creative leaps, problem decomposition, and the kind of abstract insight that many thought was exclusive to the human mind.</p>
+          <p>Of course, there’s a big difference between spitting out a string of symbolic manipulations and demonstrating genuine “mathematical insight.” Still, organizations like FrontierMath have built their benchmarks (and the subsequent scoring algorithms) to differentiate mere memorization from real logical depth. As with the “in-context scheming” tests, the design of these math benchmarks often involves carefully curated “trick” or “trap” questions that ensure a model can’t cheat its way to the right answer by spotting superficial cues.</p>
+
+          <h4>A Silver Lining: Cunning vs. Capability</h4>
+          <p>So, how do these cutting-edge mathematical breakthroughs tie back to our earlier concerns about AI behavior? In some sense, these developments highlight the two faces of AI progress. On one hand, the same complexity that allows for advanced “scheming” in a sandbox environment also allows an AI to solve extremely complicated tasks in fields like mathematics, physics, or even creative writing. The surprising truth is that progress in these areas comes from the very architectural leaps that can lead to emergent (and sometimes unwanted) behavior.</p>
+          <p>This is, admittedly, a bit of a double-edged sword. The more advanced and “general” an AI becomes, the more it can do—for better or worse. The scenario where an AI notices misalignment and tries to hide its tracks from human operators is chilling. Still, that same AI might also crack a century-old theorem or collaborate with researchers on designing better solar panels. In essence, it’s not that we want to abandon advanced AI research because of these risks; rather, we have to keep pace with those risks through aligned oversight, interpretability tools, and robust testing in various domains.</p>
+
+          <h4>Looking Ahead</h4>
+          <p>FrontierMath and other efforts like the MATH dataset or more specialized geometry or combinatorics benchmarks are part of the puzzle to ensure that AI remains net positive. By subjecting these models to rigorous mathematical “stress tests,” developers gain a clearer picture of the AI’s capabilities and potential failure modes. For instance, an AI that can easily handle complicated algebraic manipulations might still falter in geometric proofs requiring spatial intuition. Understanding those gaps can help us refine architectures and training strategies.</p>
+          <p>Ultimately, whether it’s in the domain of advanced math or in the “sandbox” designed to test AI’s subversion tactics, each experiment adds another piece to the puzzle. The continued challenge is tying all these insights together—applying the lessons from in-context scheming to the same frameworks that push AI to excel in math. With comprehensive oversight, the hope is that we can harness the positives (e.g., advanced problem-solving and accelerated scientific discoveries) while mitigating the negatives (misaligned incentives, deception, or unauthorized self-replication).</p>
+          <p>As we continue to push forward, it’s critical to remember that these AI models, while undeniably impressive, are still tools we shape and direct. We hold responsibility for the goals we embed and the guardrails we set. So, suppose there’s a single takeaway from all of this. In that case, the current frontier of AI is neither purely utopian nor irredeemably dystopian—it’s both, and we have a seat at the table when deciding which outcome prevails.</p>
+          <p>I’ll be back next time with more drone simulator updates and new projects for 2025. Stay curious, and keep an eye on the alignment discussions.</p>
+          <p>Until next time.</p>
+          <p>Bye.</p>
+          <p><strong>Works Cited / Further Reading</strong></p>
+          <p><strong>Amodei, D., Olah, C., Steinhardt, J., Christiano, P., Schulman, J., &amp; Mané, D. (2016).</strong><br>“Concrete Problems in AI Safety.” <em>arXiv preprint arXiv:1606.06565.</em><br>https://arxiv.org/abs/1606.06565</p>
+          <p><strong>Apollo Research. (2024).</strong><br><em>In-Context Scheming: Preliminary Investigations into Goal Misalignment.</em></p>
+          <p><strong>Bostrom, N. (2014).</strong><br><em>Superintelligence: Paths, Dangers, Strategies.</em> Oxford University Press.</p>
+          <p><strong>Foehn, P., et al. (2022).</strong><br>“Agile Autonomous Drone Racing.” <em>Science Robotics, 7</em>(67), eabo0036.<br>https://www.science.org/doi/10.1126/scirobotics.abo0036</p>
+          <p><strong>Hendrycks, D., Burns, C., Kadavath, S., et al. (2021).</strong><br>“Measuring Mathematical Problem Solving with the MATH Dataset.” <em>arXiv preprint arXiv:2103.03874.</em><br>https://arxiv.org/abs/2103.03874</p>
+          <p><strong>Hubinger, E., van Merwijk, C., Mikulik, V., Skalse, J., &amp; Garrabrant, S. (2021).</strong><br>“An Overview of 11 Proposals for Building Safe Advanced AI.” <em>Distill.</em><br>https://distill.pub/2021/safe-ai</p>
+          <p><strong>Kaufmann, E., Loquercio, A., Ranftl, R., Dosovitskiy, A., Koltun, V., &amp; Scaramuzza, D. (2020).</strong><br>“Deep Drone Acrobatics.” In <em>Proceedings of Robotics: Science and Systems (RSS)</em>.<br>https://arxiv.org/abs/2006.05768</p>
+          <p><strong>OpenAI. (2023).</strong><br>“GPT-4 System Card.” OpenAI.<br>https://openai.com/gpt-4</p>
+          <p><strong>Russell, S., Dewey, D., &amp; Tegmark, M. (2015).</strong><br>“Research Priorities for Robust and Beneficial Artificial Intelligence.” <em>AI Magazine, 36</em>(4), 105–114.<br>https://doi.org/10.1609/aimag.v36i4.2577<br></p>
+          <p><strong>Further Reading / Watching</strong></p>
+          <ul>
+            <li><strong>DeepMind Blog</strong>: Updates on AI research, including safe exploration and advanced path-planning.</li>
+            <li><strong>AI Alignment Forum</strong>: Community-driven discussions on topics like in-context learning, deceptive alignment, and interpretability.</li>
+            <li><strong>Stanford Center for Research on Foundation Models (CRFM)</strong>: Analyses of large language models, focusing on trustworthy and safe model deployment.</li>
+          </ul>
+        </div>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

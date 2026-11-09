@@ -178,6 +178,11 @@ p {
   margin: 2.2rem 0 1rem;
 }
 
+.newsletter-body h4 {
+  font-size: 1.05rem;
+  margin: 2rem 0 0.8rem;
+}
+
 .newsletter-body ul,
 .newsletter-body ol {
   padding-left: 1.2rem;
